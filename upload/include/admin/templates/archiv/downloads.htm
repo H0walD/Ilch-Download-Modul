@@ -29,9 +29,9 @@
 
 <table cellpadding="3" border="0" cellspacing="1" class="border">
   <tr class="Chead">
-		<td colspan="5"><b>Kategorien</b></td>
+		<td colspan="6"><b>Kategorien</b></td>
   </tr>{frei}<tr class="Cmite">
-    <td><a href="?archiv-downloads-S0">Keine</a></td>
+      <td colspan="2"><a href="?archiv-downloads-S0">Keine</a></td>
     <td></td>
     <td></td>
     <td></td>
@@ -41,7 +41,7 @@
 <br />
 </td></tr><tr><td><a href="#" name="edit"></a>
 
-<form action="admin.php?archiv-downloads" method="POST" name="form">
+<form action="admin.php?archiv-downloads" method="POST" name="form" enctype="multipart/form-data">
 	<input type="hidden" name="pkey" value="{pkey}">
 
 	<table class="border" cellpadding="3" cellspacing="1" border="0">
@@ -66,7 +66,10 @@
       </td>
     </tr><tr>
       <td class="Cmite">Screenshot Url</td>
-			<td class="Cnorm"><input type="text" size="50" name="surl" value="{surl}" /></td>
+                    <td class="Cnorm">
+                        <input type="text" size="50" name="surl" value="{surl}" placeholder="URL oder Bild Hochladen" /><br />
+                        <input type="file" sitze="50" name="file" />
+                    </td>
     </tr><tr>
       <td class="Cmite">Vorschau Url</td>
 			<td class="Cnorm"><input type="text" size="50" name="ssurl" value="{ssurl}" /></td>
@@ -86,7 +89,7 @@
 
 </td><td valign="top">
 
-<form action="admin.php?archiv-downloads" method="POST">
+<form action="admin.php?archiv-downloads" method="POST" enctype="multipart/form-data">
 	<input type="hidden" name="Cpkey" value="{Cpkey}">
 
 	<table class="border" cellpadding="3" cellspacing="1" border="0">
@@ -101,7 +104,12 @@
     </tr><tr>
       <td class="Cmite">Name</td>
 			<td class="Cnorm"><input type="text" name="Cname" value="{Cname}" /></td>
-    </tr><tr>
+    </tr>
+    <tr>
+      <td class="Cmite">Bild</td>
+        <td class="Cnorm"><input type="file" name="file" /></td>
+    </tr>
+    <tr>
       <td class="Cmite">Text</td>
 			<td class="Cnorm"><textarea cols="35" rows="3" name="Cdesc">{Cdesc}</textarea></td>
     </tr>
