@@ -308,10 +308,7 @@ switch ($um) {
             
             $upload = new Upload();           
             $upload->path('include/images/downloads/')
-                         ->type('jpg', 'png', 'gif', 'jpeg');
-            
-            print_r($_POST);
-            print_r($_FILES);
+         		->type('jpg', 'png', 'gif', 'jpeg');
             
             if( empty($_POST['surl']) ){
                 $upload->name($name)->init();
@@ -357,9 +354,9 @@ switch ($um) {
             
             $upload = new Upload();           
             $upload->path('include/images/downcats/')
-                         ->name(md5($_POST['Cname']))
-                         ->type('jpg', 'png', 'gif', 'jpeg')
-                         ->init();
+	         ->name(md5($_POST['Cname']))
+	         ->type('jpg', 'png', 'gif', 'jpeg')
+	         ->init();
             
             if (empty ($_POST['Cpkey'])) {
                 $pos = db_result(db_query("SELECT COUNT(*) FROM prefix_downcats WHERE cat = " . $_POST['Ccat']), 0);
