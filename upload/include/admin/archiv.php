@@ -323,7 +323,7 @@ switch ($um) {
             $_POST['surl'] = escape($_POST['surl'], 'string');
             $_POST['ssurl'] = escape($_POST['ssurl'], 'string');           
             $_POST['desc'] = escape($_POST['desc'], 'string');
-            $_POST['descl'] = escape($_POST['descl'], 'string');
+            $_POST['descl'] = escape($_POST['txt'], 'string');
 
             if (empty ($_POST['pkey'])) {
                 $pos = db_result(db_query("SELECT COUNT(*) FROM prefix_downloads WHERE cat = " . $_POST['cat']), 0);
