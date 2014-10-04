@@ -1,59 +1,67 @@
-<script language="JavaScript" type="text/javascript">
-<!--
-function doVote(n1,did) {
-  document.location.href="index.php?downloads-show-" + did + "-z"+n1;
-}
-//-->
-</script>
+<link rel="stylesheet" type="text/css" href="/include/includes/css/downloads/downloads.css">
 
-<table width="100%" class="border" border="0" cellspacing="1" cellpadding="3">
-  <tr class="Chead">
-		<th colspan="4" align="center"><b>{name} {version}</b></th>
-	</tr><tr>
-	  <td class="Cmite">{_lang_name} (Version)</td>
-		<td class="Cnorm">{name} {version_kl}</td>
-    <td class="Cmite" colspan="2" valign="top">{_lang_voting} {vote_wertung}
-  </tr><tr>
-	  <td class="Cmite">{_lang_author}</td>
-		<td class="Cnorm">{creater}</td>
-    <td class="Cnorm" rowspan="2" colspan="2" align="center">
-    <table class="border" border="0" cellspacing="1" cellpadding="0">
-      <tr>
-        <td class="Cdark" onClick="doVote(1,{id})" style="cursor:pointer">&nbsp;1&nbsp;</td>
-        <td class="Cmite" onClick="doVote(2,{id})" style="cursor:pointer">&nbsp;2&nbsp;</td>
-        <td class="Cdark" onClick="doVote(3,{id})" style="cursor:pointer">&nbsp;3&nbsp;</td>
-        <td class="Cmite" onClick="doVote(4,{id})" style="cursor:pointer">&nbsp;4&nbsp;</td>
-        <td class="Cdark" onClick="doVote(5,{id})" style="cursor:pointer">&nbsp;5&nbsp;</td>
-        <td class="Cmite" onClick="doVote(6,{id})" style="cursor:pointer">&nbsp;6&nbsp;</td>
-        <td class="Cdark" onClick="doVote(7,{id})" style="cursor:pointer">&nbsp;7&nbsp;</td>
-        <td class="Cmite" onClick="doVote(8,{id})" style="cursor:pointer">&nbsp;8&nbsp;</td>
-        <td class="Cdark" onClick="doVote(9,{id})" style="cursor:pointer">&nbsp;9&nbsp;</td>
-        <td class="Cmite" onClick="doVote(10,{id})" style="cursor:pointer">&nbsp;10&nbsp;</td>
-      </tr>
+<center>
+    <table width="90%" cellspacing="1" cellpadding="0" align="center" class="border">
+        <tr>
+            <td colspan="3" class="hdbgdark" >{name}</td>
+        </tr>
+        <tr>
+            <td width="50%" valign="top" class="hdbgmite">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="20%" class="hdbgdarkmite"><b>{_lang_name}:</b></td>
+                        <td width="80%" class="hdbgdarkmite">{name}</td>
+                    </tr>
+                    <tr>
+                        <td width="20%" class="hdbgdarkmite"><b>Von:</b></td>
+                        <td width="80%" class="hdbgdarkmite">{creater}</td>
+                    </tr>
+                    <tr>
+                        <td width="20%" class="hdbgdarkmite"><b>{_lang_date}:</b></td>
+                        <td width="80%" class="hdbgdarkmite">{datum}</td>
+                    </tr>
+                </table>
+            </td>
+            <td width="50%" valign="top" class="hdbgmite">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" >
+                    <tr>
+                        <td width="50%" class="hdbgdarkmite"><b>{_lang_size}:</b></td>
+                        <td width="50%" class="hdbgdarkmite">{size}</td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="hdbgdarkmite"><b>{_lang_downloads}:</b></td>
+                        <td width="50%" class="hdbgdarkmite">{downs}</td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="hdbgdarkmite"><b>{_lang_seenfrom}:</b></td>
+                        <td width="50%" class="hdbgdarkmite">{hits}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td width="100%" valign="middle" class="hdbgmite" colspan="3">
+                <table width="100%" border="0" cellspacing="1" cellpadding="0" class="border">
+                    <tr>
+                        <td width="33%" align="center" style="text-align:center;" class="hdbgdarkmite" height="40px">{downlink}</td>
+                        <td width="33%" align="center" style="text-align:center;" class="hdbgdarkmite" height="40px" >{surl}</td>
+                        <td width="33%" align="center" style="text-align:center;" class="hdbgdarkmite" height="40px">{demo}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
     </table>
-    </td>
-	</tr><tr>
-	  <td class="Cmite">{_lang_date}</td>
-		<td class="Cnorm">{datum}</td>
-  </tr><tr>
-	  <td class="Cmite" width="110">{_lang_size}</td>
-		<td class="Cnorm">{size}</td>
-    <td class="Cmite" width="110">{_lang_voter}</td>
-		<td class="Cnorm">{vote_klicks}</td>
-	</tr><tr>
-	  <td class="Cmite">{_lang_downloads}</td>
-		<td class="Cnorm">{downs}</td>
-	  <td class="Cmite">{_lang_seenfrom}</td>
-		<td class="Cnorm">{hits}</td>
-	</tr>
-</table>
-<p></p>
-<b><center><a href="index.php?downloads-down-{id}">{_lang_download}</a>{surl}</center></b>
-<p></p>
-<table width="100%" class="border" border="0" cellspacing="1" cellpadding="3">
-  <tr>
-	  <th class="Cdark">{_lang_desc}</th>
-  </tr>
-		<td class="Cnorm">{ssurl}{descl}</td>
-	</tr>
-</table>
+</center>
+<br /><br />
+<div style="width:100%;">
+    <fieldset>
+        <legend><b>{_lang_desc}</b></legend>
+        <div>
+            <div style="padding-right:10px;">{ssurl}</div>
+                {descl}
+        </div>
+<br /><br /><br /><br />
+    </fieldset>
+</div>
+
+

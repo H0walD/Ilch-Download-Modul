@@ -1,48 +1,60 @@
 {EXPLODE}
-<table width="100%" class="border" border="0" cellspacing="1" cellpadding="3">
-  <tr class="Chead">
-		<th width="80%" align="center"><b>{_lang_category}</b></th>
-    <th width="20%" align="center">{_lang_files}</th>
-	</tr>
-	{EXPLODE}
-	<tr class="{class}">
-	  <td><a href="index.php?downloads-{id}">{name}</a><br /><span class="smalfont">&raquo;&nbsp;{desc}</span></td>
-		<td align="center">{files}</td>
-	</tr>
-	{EXPLODE}
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+{EXPLODE}
+{footer1}
+<td width="33%" align="left">
+    <div class="hdbgaussen">
+        <div class="hdbginnen">
+            <div>
+                    <div class="hdbgtitelplatz">
+                        <div class="hdbgplatzh"><center><a class="hdbgtitel" href="index.php?downloads-{id}">{name}</a></center></div>
+                    </div>
+            </div>
+            <br />
+            <center>
+                <div class="hdbgimg">
+                    <a href="index.php?downloads-{id}"><img class="hdbgimginnen" src="{img}" border="0" width="220px" onError="this.src='/include/images/downcats/na.png'"></a>           
+                </div>
+                <div class="hdbgdown">Downloads: <span class="hdbgbutton">{files}</span></div>
+            </center>
+        </div>
+    </div>
+</td>        
+{footer2}
+{EXPLODE}
 </table>
 <br /><br />
+<div class="hdbgcopy">Copyright &copy; 2014 Downloadansicht by <a href="http://www.howald-design.ch" class="hdbglink" target="_blank">H0walD-Design</a></div>
+<link rel="stylesheet" type="text/css" href="/include/includes/css/downloads/downloads.css">
+<br /><br />
 {EXPLODE}
-<table width="100%" class="border" border="0" cellspacing="1" cellpadding="3">
-  <tr class="Chead">
-		<th width="65%" align="center"><b><a href="index.php?downloads-{cid}-position{POM}">{_lang_files}</b></a></th>
-    <th width="20%" align="center"><a href="index.php?downloads-{cid}-date{DAM}">{_lang_date}</a></th>
-    <th width="15%" align="center"><a href="index.php?downloads-{cid}-downs{DOM}">{_lang_downs}</a></th>
-	</tr>
-  {EXPLODE}
-   <tr class="{class}">
-	   <td><a href="index.php?downloads-show-{id}">{ssurl}{name} {version}</a><br /><span class="smalfont">&raquo;&nbsp;{desc}</span></td>
-		 <td align="center">{datum}</td>
-     <td align="center">{downs}</td>
-	 </tr>
-   {EXPLODE}
+<table width="100%" border="0" cellspacing="1" cellpadding="3">
+{EXPLODE}
+{footer3}
+<td width="33%" align="center" style="border:1px solid #272727;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>        
+            <td width="70" height="60" align="center" class="hdbgpic" >
+                <a href="index.php?downloads-show-{id}" class="hdbgtooltip" >{surl}
+                    <span width="300px">
+                        <img src="{temp_surl}" width="300" onError="this.src='/include/images/downcats/na.png'" />
+                    </span>
+                </a>
+            </td>
+            <td height="60" class="Cnorm"><div class="hdbgname"><a class="hdbgtitel1" href="index.php?downloads-show-{id}">{name}</a></div>
+                <span class="hdbgfont">Download wurde am <b><span style="color: #f00;">{datum}</span></b> hingef&uuml;gt.</span><br />
+                <span class="hdbgfont">Diese Datei wurde bereits <b><span style="color: #f00;">{downs}</span></b> mal heruntergeladen.</span><br /><br />
+                
+                <div class="hdbgposi" ><a href="index.php?downloads-show-{id}" class="btn btn-info"><i class="icon-search"></i> mehr Infos</a></div>
+            </td>
+        </tr>
+    </table>
+</td>
+{footer4}
+{EXPLODE}
 </table>
-
-
+<div class="hdbgcopy">Copyright &copy; 2014 Downloadansicht by <a  href="http://www.howald-design.ch" class="hdbglink" target="_blank">H0walD-Design</a></div>
+<link rel="stylesheet" type="text/css" href="/include/includes/css/downloads/downloads.css">
 {EXPLODE}
-<p></p><p></p>
-<form action="index.php?downloads-upload" method="POST" enctype="multipart/form-data">
-  <fieldset>
-    <legend><b>{_lang_fileup}</b></legend>
-	  <label style="width:100px; float:left;">{_lang_name}</label><input type="text" name="name" maxlength="50" value="" /><br />
-	  <label style="width:100px; float:left;">{_lang_version}</label><input type="text" name="version" maxlength="10" size="11" value="" /><br />
-	  <label style="width:100px; float:left;">{_lang_author}</label><input type="text" name="autor" maxlength="50" value="" /><br />
-	  <label style="width:100px; float:left;">{_lang_linkor}</label><input type="text" name="url" size="40" maxlength="100" value="" /><br />
-	  <label style="width:100px; float:left;">{_lang_upload}</label><input type="file" name="file" size="28" /><br />
-	  <label style="width:100px; float:left;">{_lang_demolink}</label><input type="text" name="surl" size="40" maxlength="100" value="" /><br />
-	  <label style="width:100px; float:left;">{_lang_preview}</label><input type="text" name="ssurl" size="40" maxlength="100" value="" /><br />
-	  <label style="width:100px; float:left;">{_lang_shortdesc}</label><input type="text" name="desc" size="40" maxlength="100" value="" /><br />
-	  <label style="width:100px; float:left;">{_lang_desc}</label><textarea cols="40" rows="4" name="descl"></textarea><br />
-	  <label style="width:100px; float:left;"></label><input type="submit" value="Absenden" name="sub"><br />
-  </fieldset>
-</form>
+
+

@@ -4,8 +4,10 @@
 defined ('main') or die ('no direct access');
 defined ('admin') or die ('only admin access');
 
+require_once 'include/includes/class/upload.php';
+
 if (!empty($_REQUEST['f']) and substr($_REQUEST['f'], 0, 23) != 'include/downs/downloads') {
-	die('dont try to hack');
+    die('dont try to hack');
 }
 
 function get_upload_linked ($v) {
@@ -70,11 +72,12 @@ function get_downloads_ar ($ar = null, $f = null) {
 }
 
 function archiv_downs_admin_showcats ($id , $stufe) {
-    $q = "SELECT id,name,pos,cat FROM prefix_downcats WHERE cat = " . $id . " ORDER BY pos";
+    $q = "SELECT id,name,pos,cat,img FROM prefix_downcats WHERE cat = " . $id . " ORDER BY pos";
     $erg = db_query($q);
     if (db_num_rows($erg) > 0) {
         while ($row = db_fetch_object($erg)) {
-            echo '<tr class="Cmite"><td>' . $stufe . '- <a href="admin.php?archiv-downloads-S' . $row->id . '">' . $row->name . '</a></td>';
+            echo '<tr class="Cmite"><td><img width="40" src="'.$row->img.'"></td>';
+            echo '<td>' . $stufe . '- <a href="admin.php?archiv-downloads-S' . $row->id . '">' . $row->name . '</a></td>';
             echo '<td align="center"><a href="admin.php?archiv-downloads-E' . $row->id . '#edit"><img src="include/images/icons/edit.gif" border="0"></a></td>';
             echo '<td align="center"><a href="javascript:Kdel(' . $row->id . ')"><img src="include/images/icons/del.gif" border="0"></a></td>';
             echo '<td align="center"><a href="admin.php?archiv-downloads-S' . $row->id . '-O' . $row->id . '-' . $row->pos . '-' . $row->cat . '"><img src="include/images/icons/pfeilo.gif" border="0"></a></td>';
@@ -100,7 +103,7 @@ function archiv_links_admin_showcats ($id , $stufe) {
     $erg = db_query($q);
     if (db_num_rows($erg) > 0) {
         while ($row = db_fetch_object($erg)) {
-            echo '<tr class="Cmite"><td>' . $stufe . '- <a href="admin.php?archiv-links-S' . $row->id . '">' . $row->name . '</a></td>';
+            echo '<tr class="Cmite"><td> ' . $stufe . '- <a href="admin.php?archiv-links-S' . $row->id . '">' . $row->name . '</a></td>';
             echo '<td align="center"><a href="?archiv-links-E' . $row->id . '#edit"><img src="include/images/icons/edit.gif" border="0"></a></td>';
             echo '<td align="center"><a href="javascript:Kdel(' . $row->id . ')"><img src="include/images/icons/del.gif" border="0"></a></td>';
             echo '<td align="center"><a href="admin.php?archiv-links-S' . $row->id . '-O' . $row->id . '-' . $row->pos . '-' . $row->cat . '"><img src="include/images/icons/pfeilo.gif" border="0"></a></td>';
@@ -133,26 +136,28 @@ switch ($um) {
             }
             // file hochladen
             if (isset ($_FILES['file']['name'])) {
-            	$pathinfo = pathinfo($_FILES['file']['name']);
-				if (substr($pathinfo['extension'], 0, 3) == 'php') {
-            		$msg = '<font color="#FF0000">Es können keine PHP Dateien hochgeladen werden.</font><br />';
-            	} elseif (move_uploaded_file ($_FILES['file']['tmp_name'], $_REQUEST['f'] . '/' . $_FILES['file']['name'])) {
+                $pathinfo = pathinfo($_FILES['file']['name']);
+                if (substr($pathinfo['extension'], 0, 3) == 'php') {
+                    $msg = '<font color="#FF0000">Es k&ouml;nnen keine PHP Dateien hochgeladen werden.</font><br />';
+                } elseif (move_uploaded_file ($_FILES['file']['tmp_name'], $_REQUEST['f'] . '/' . $_FILES['file']['name'])) {
                     @chmod($_REQUEST['f'] . '/' . $_FILES['file']['name'], 0777);
                     $msg = 'Datei (' . $_FILES['file']['name'] . ' ) <font color="#00FF00">erfolgreich hochgeladen</font><br />';
                 } else {
                     $msg = 'Datei ( ' . $_FILES['file']['name'] . ' ) <font color="#FF0000">nicht erfolgreich hochgeladen</font><br />';
                 }
             }
+            
             // datei loeschen
             if (isset ($_REQUEST['d'])) {
                 unlink ($_REQUEST['f'] . '/' . $_REQUEST['d']);
             }
+            
             // datei umbenennen
             if (isset ($_REQUEST['r'])) {
-				$pathinfo = pathinfo($_REQUEST['r']);
-				if (substr($pathinfo['extension'], 0, 3) == 'php') {
-					$msg = '<font color="#FF0000">Es können keine PHP Dateien erzeugt werden.</font><br />';
-				} elseif (@rename ($_REQUEST['f'] . '/' . $_REQUEST['v'], $_REQUEST['f'] . '/' . $_REQUEST['r'])) {
+                $pathinfo = pathinfo($_REQUEST['r']);
+                if (substr($pathinfo['extension'], 0, 3) == 'php') {
+                    $msg = '<font color="#FF0000">Es k&ouml;nnen keine PHP Dateien erzeugt werden.</font><br />';
+                } elseif (@rename ($_REQUEST['f'] . '/' . $_REQUEST['v'], $_REQUEST['f'] . '/' . $_REQUEST['r'])) {
                     db_query("UPDATE prefix_downloads SET url = '" . $_REQUEST['f'] . '/' . $_REQUEST['r'] . "' WHERE url = '" . $_REQUEST['f'] . '/' . $_REQUEST['v'] . "'");
                     db_query("UPDATE prefix_downloads SET surl = '" . $_REQUEST['f'] . '/' . $_REQUEST['r'] . "' WHERE surl = '" . $_REQUEST['f'] . '/' . $_REQUEST['v'] . "'");
                     db_query("UPDATE prefix_downloads SET ssurl = '" . $_REQUEST['f'] . '/' . $_REQUEST['r'] . "' WHERE ssurl = '" . $_REQUEST['f'] . '/' . $_REQUEST['v'] . "'");
@@ -232,7 +237,7 @@ switch ($um) {
                 foreach($ar_files as $v) {
                     $class = ($class == 'Cmite' ? 'Cnorm' : 'Cmite');
                     echo '<tr class="' . $class . '">';
-                    echo '<td>' . $v . '</td>';
+                    echo '<td>' . $v . ' </td>';
                     echo '<td><a href="javascript:deleteFile(\'' . $f . '\',\'' . $v . '\')"><img src="include/images/icons/del.gif" title="l&ouml;schen" border="0" /></a></td>';
                     echo '<td><a href="javascript:moveFile(\'' . $f . '\',\'' . $v . '\')"><img src="include/images/icons/pfeila.gif" title="verschieben" border="0" /></a></td>';
                     echo '<td><a href="javascript:renFile(\'' . $f . '\',\'' . $v . '\')"><img src="include/images/icons/edit.gif" title="umbennen" border="0" /></a></td>';
@@ -297,20 +302,32 @@ switch ($um) {
         // download eintraege speichern oder aendern.
         if (!empty($_POST['sub'])) {
             $_POST['url'] = $_POST['newurl'];
+            
+            $_POST['name'] = escape($_POST['name'], 'string');
+            $name = md5($_POST['name']);
+            
+            $upload = new Upload();           
+            $upload->path('include/images/downloads/')
+                         ->type('jpg', 'png', 'gif', 'jpeg');
+            
+            if( empty($_POST['surl']) ){
+                $upload->name($name)->init();
+                $_POST['surl'] = $upload->file();
+            }
 
             $_POST['cat'] = escape($_POST['cat'], 'integer');
             $_POST['creater'] = escape($_POST['creater'], 'string');
             $_POST['version'] = escape($_POST['version'], 'string');
+            $_POST['demo'] = escape($_POST['demo'], 'string');
             $_POST['url'] = escape($_POST['url'], 'string');
             $_POST['surl'] = escape($_POST['surl'], 'string');
-            $_POST['ssurl'] = escape($_POST['ssurl'], 'string');
-            $_POST['name'] = escape($_POST['name'], 'string');
+            $_POST['ssurl'] = escape($_POST['ssurl'], 'string');           
             $_POST['desc'] = escape($_POST['desc'], 'string');
-            $_POST['descl'] = escape($_POST['descl'], 'string');
+            $_POST['descl'] = escape($_POST['txt'], 'string');
 
             if (empty ($_POST['pkey'])) {
                 $pos = db_result(db_query("SELECT COUNT(*) FROM prefix_downloads WHERE cat = " . $_POST['cat']), 0);
-                db_query("INSERT INTO prefix_downloads (`time`,`cat`,`creater`,`version`,`url`,surl,`ssurl`,`name`,`desc`,`descl`,pos) VALUES (NOW(),'" . $_POST['cat'] . "','" . $_POST['creater'] . "','" . $_POST['version'] . "','" . $_POST['url'] . "','" . $_POST['surl'] . "','" . $_POST['ssurl'] . "','" . $_POST['name'] . "','" . $_POST['desc'] . "','" . $_POST['descl'] . "','" . $pos . "')");
+                db_query("INSERT INTO prefix_downloads (`time`,`cat`,`creater`,`version`,`url`,surl,`ssurl`,`name`,`desc`,`descl`,pos,`demo`) VALUES (NOW(),'" . $_POST['cat'] . "','" . $_POST['creater'] . "','" . $_POST['version'] . "','" . $_POST['url'] . "','" . $_POST['surl'] . "','" . $_POST['ssurl'] . "','" . $_POST['name'] . "','" . $_POST['desc'] . "','" . $_POST['descl'] . "','" . $pos . "','" . $_POST['demo'] . "')");
             } else {
                 $alt_row = db_fetch_assoc(db_query("SELECT cat,pos FROM prefix_downloads WHERE id = " . $_POST['pkey']));
                 if ($alt_row['cat'] != $_POST['cat']) {
@@ -323,7 +340,7 @@ switch ($um) {
                 } else {
                     $datum = '';
                 }
-                db_query("UPDATE prefix_downloads SET " . $datum . "pos = " . $pos . ", `cat` = '" . $_POST['cat'] . "',`creater` = '" . $_POST['creater'] . "',version = '" . $_POST['version'] . "',url = '" . $_POST['url'] . "',surl = '" . $_POST['surl'] . "',ssurl = '" . $_POST['ssurl'] . "',`name` = '" . $_POST['name'] . "',`desc` = '" . $_POST['desc'] . "',descl = '" . $_POST['descl'] . "' WHERE id = '" . $_POST['pkey'] . "'");
+                db_query("UPDATE prefix_downloads SET " . $datum . "pos = " . $pos . ", `cat` = '" . $_POST['cat'] . "',`creater` = '" . $_POST['creater'] . "',version = '" . $_POST['version'] . "',url = '" . $_POST['url'] . "',surl = '" . $_POST['surl'] . "',ssurl = '" . $_POST['ssurl'] . "',`name` = '" . $_POST['name'] . "',`desc` = '" . $_POST['desc'] . "',descl = '" . $_POST['descl'] . "',demo = '" . $_POST['demo'] . "'  WHERE id = '" . $_POST['pkey'] . "'");
                 if ($alt_row['cat'] != $_POST['cat']) {
                     db_query("UPDATE prefix_downloads SET pos = pos - 1 WHERE pos > " . $alt_row['pos'] . " AND cat = " . $alt_row['cat']);
                 }
@@ -335,9 +352,16 @@ switch ($um) {
             if (empty($_POST['Ccat'])) {
                 $_POST['Ccat'] = 0;
             }
+            
+            $upload = new Upload();           
+            $upload->path('include/images/downcats/')
+                         ->name(md5($_POST['Cname']))
+                         ->type('jpg', 'png', 'gif', 'jpeg')
+                         ->init();
+            
             if (empty ($_POST['Cpkey'])) {
                 $pos = db_result(db_query("SELECT COUNT(*) FROM prefix_downcats WHERE cat = " . $_POST['Ccat']), 0);
-                db_query("INSERT INTO prefix_downcats (`cat`,`name`,`desc`,pos,recht) VALUES (" . $_POST['Ccat'] . ",'" . $_POST['Cname'] . "','" . $_POST['Cdesc'] . "','" . $pos . "','" . $_POST['Crecht'] . "')");
+                db_query("INSERT INTO prefix_downcats (`cat`,`name`,`desc`,pos,recht,img) VALUES (" . $_POST['Ccat'] . ",'" . $_POST['Cname'] . "','" . $_POST['Cdesc'] . "','" . $pos . "','" . $_POST['Crecht'] . "','".$upload->file()."')");
             } else {
                 $alt_row = db_fetch_assoc(db_query("SELECT cat,pos FROM prefix_downcats WHERE id = " . $_POST['Cpkey']));
                 $bool = true;
@@ -355,12 +379,13 @@ switch ($um) {
                         $pos = $alt_row['pos'];
                     }
 
-                    db_query("UPDATE prefix_downcats SET `cat` = '" . $_POST['Ccat'] . "',`name` = '" . $_POST['Cname'] . "',pos = '" . $pos . "',`desc` = '" . $_POST['Cdesc'] . "', recht = '" . $_POST['Crecht'] . "' WHERE `id` = '" . $_POST['Cpkey'] . "'");
+                    db_query("UPDATE prefix_downcats SET `cat` = '" . $_POST['Ccat'] . "',`name` = '" . $_POST['Cname'] . "',pos = '" . $pos . "',`desc` = '" . $_POST['Cdesc'] . "', recht = '" . $_POST['Crecht'] . "', img='".$upload->file()."' WHERE `id` = '" . $_POST['Cpkey'] . "'");
                     if ($alt_row['cat'] != $_POST['Ccat']) {
                         db_query("UPDATE prefix_downcats SET pos = pos - 1 WHERE pos > " . $alt_row['pos'] . " AND cat = " . $alt_row['cat']);
                     }
                 }
             }
+            
             $azk = $_POST['Ccat'];
         }
         // downloadeintrage verschieben.
@@ -408,7 +433,7 @@ switch ($um) {
         }
         // downs
         if ($menu->getA(2) == 'e') {
-            $erg = db_query("SELECT id,`cat`,creater,surl,ssurl,pos,version,url,`name`,`desc`,descl FROM prefix_downloads WHERE id = '" . $menu->getE(2) . "'");
+            $erg = db_query("SELECT id,`cat`,creater,surl,ssurl,pos,version,url,`name`,`desc`,descl,demo FROM prefix_downloads WHERE id = '" . $menu->getE(2) . "'");
             $_ilch = db_fetch_assoc($erg);
             $_ilch['pkey'] = $menu->getE(2);
             $azk = $_ilch['cat'];
@@ -433,7 +458,8 @@ switch ($um) {
                 'url' => '',
                 'desc' => '',
                 'descl' => '',
-                'datum' => ''
+                'datum' => '',
+                'demo' => ''
                 );
             unset($c);
         }
@@ -466,12 +492,12 @@ switch ($um) {
         // dateien hochladen, also wird als kategorie link noch ein "freischalt" link hinzugefueght.
         $frei = '';
         if ($allgAr['archiv_down_userupload'] == 1 AND is_writeable ('include/downs/downloads/user_upload')) {
-            $frei = '<tr class="Cmite"><td colspan="5"><a href="?archiv-downloads-Sa">User-Uploads freischalten</a></td></tr>';
+            $frei = '<tr class="Cmite"><td colspan="6"><a href="?archiv-downloads-Sa">User-Uploads freischalten</a></td></tr>';
         }
 
         $tpl->out(0);
         $class = 0;
-        $abf = "SELECT id,`cat`,`version`,`name`,pos FROM prefix_downloads WHERE cat = " . $azk . " ORDER BY pos";
+        $abf = "SELECT id,`cat`,`version`,`name`,pos,surl,demo FROM prefix_downloads WHERE cat = " . $azk . " ORDER BY pos";
         $erg = db_query($abf);
         while ($row = db_fetch_assoc($erg)) {
             $class = ($class == 'Cmite' ? 'Cnorm' : 'Cmite');

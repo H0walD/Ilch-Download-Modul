@@ -1,6 +1,306 @@
 /*  =========================================================
 Datei: boxen.css
-Datum: 2014-09-06
+Datum: 2014-10-03
 Autor: Wille.G (H0walD)
 Copyright: by www.howald-design.ch
 ========================================================== */ 
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300italic,300,400italic,400,500italic,500,700italic,700);
+@import url(/include/includes/css/downloads/bootstrap-icons.min.css);
+@import url(/include/includes/css/downloads/font-awesome.css);
+
+.hdbgaussen{
+	float:left;
+	width:230px;
+	height:auto;
+	padding:7px;
+	margin:0;
+}
+
+.hdbginnen{
+	float:left;
+	border:1px solid #272727;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #CCC;
+	background-image: url("/include/images/downloads/pattern.png");
+  	background-repeat: repeat-x, repeat-y; 
+	position: absolute
+	margin:0;
+	height:auto;
+	padding:1px;
+}
+
+.hdbgtitelplatz{
+	float: left;
+	width: 230px;
+	height: 30px;
+	margin: 0;
+	background-color: rgba(102, 102, 102, 0.7);
+	background: rgba(102, 102, 102, 0.7);
+	color: rgba(102, 102, 102, 0.7);
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	-webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
+	box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow:inset 0px 1px 21px #000000;
+	-webkit-box-shadow:inset 0px 1px 21px #000000;
+	box-shadow:inset 0px 1px 21px #000000;
+}
+
+.hdbgplatzh{
+	float: left;
+	width: 230px;
+	height: 20px;
+	margin: 0;
+}
+.hdbgtitel{
+	text-align: left;
+	font: 16px Ubuntu;
+	font-weight:bold;
+	text-indent: 0px;
+	line-height: 30px;
+	color: rgba(255,255,255,1.0);
+	text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+}
+.hdbgtitel:hover{
+	font: 18px Ubuntu;
+	font-weight:bold;
+	text-indent: 0px;
+	line-height: 25px;
+	color: rgba(255,255,255,1.0);
+	text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+}
+
+.hdbgimginnen{
+	border:1px solid #272727;
+	margin:6px 0 6px 0;
+	-moz-box-shadow: 3px 4px 4px rgba(0,0,0,0.65);
+	-webkit-box-shadow: 3px 4px 4px rgba(0,0,0,0.65);
+	box-shadow: 3px 4px 4px rgba(0,0,0,0.65);
+}
+		
+.hdbgdown{
+	cursor:url("/include/images/downloads/smil.png"),auto;
+	line-height: 30px;
+	color: rgba(201,201,201,1.0);
+	text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+	font: 18px Ubuntu;
+	height: 30px;
+	background-color: rgba(102, 102, 102, 0.7);
+	background: rgba(102, 102, 102, 0.7);
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	-webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
+	box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow:inset 0px 1px 21px #000000;
+	-webkit-box-shadow:inset 0px 1px 21px #000000;
+	box-shadow:inset 0px 1px 21px #000000;
+}
+
+.hdbgbutton {
+	cursor:url("/include/images/downloads/smil.png"),auto;
+	margin:4px auto 4px auto;
+	-moz-box-shadow:inset 0px 1px 0px 0px #e6e3e6;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #e6e3e6;
+	box-shadow:inset 0px 1px 0px 0px #e6e3e6;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cfcfcf), color-stop(1, #8f8f8f) );
+	background:-moz-linear-gradient( center top, #cfcfcf 5%, #8f8f8f 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#cfcfcf', endColorstr='#8f8f8f');
+	background-color:#cfcfcf;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:10px;
+	-moz-border-radius-topright:10px;
+	border-top-right-radius:10px;
+	-webkit-border-bottom-right-radius:10px;
+	-moz-border-radius-bottomright:10px;
+	border-bottom-right-radius:10px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:-20px;
+	border:1px solid #272727;
+	display:inline-block;
+	color: rgba(255,255,255,1.0);
+	font: 18px Ubuntu;
+	font-weight:bold;
+	font-style:normal;
+	height:20px;
+	line-height:20px;
+	width:50px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+}
+
+.hdbgcopy{
+	text-align: right;
+	font: 14px Ubuntu;
+	font-weight: bold;
+	color: rgba(0,0,0,0.6);
+	text-shadow: 2px 2px 2px rgba(255,255,255,1.0);
+}
+
+.hdbglink{
+	text-align: right;
+	font: 16px Ubuntu;
+	font-weight: bold;
+	color: rgba(0,0,0,1.0);
+	text-shadow: 2px 2px 2px rgba(255,255,255,1.0);
+}
+.hdbglink:hover{
+	text-align: right;
+	font: 16px Ubuntu;
+	font-weight: bold;
+	color: rgba(0,0,0,0.6);
+	text-shadow: 2px 2px 2px rgba(255,255,255,1.0);
+}
+
+a.hdbgtooltip {outline:none; }
+a.hdbgtooltip strong {line-height:30px;}
+a.hdbgtooltip:hover {text-decoration:none;} 
+a.hdbgtooltip span {
+    z-index:10;display:none; padding:4px 4px;
+    margin-top:60px; margin-left:-180px;
+    width:300px; line-height:16px;
+}
+
+a.hdbgtooltip:hover span{
+    display:inline; position:absolute; 
+    border:1px solid #272727; 
+	color:#FFF;
+	background-image: url("/include/images/downloads/pattern.png");
+  	background-repeat: repeat-x, repeat-y; 
+    background-color: #CCC;
+}
+.callout {z-index:20;position:absolute;border:0;top:-14px;left:120px;}
+    
+/*CSS3 extras*/
+a.hdbgtooltip span
+{
+    border-radius:2px;        
+    box-shadow: 0px 0px 8px 4px #666;
+    /*opacity: 0.8;*/
+}
+
+.hdbgpic{
+	background-color: #CCC;
+	background-image: url("/include/images/downloads/pattern.png");
+  	background-repeat: repeat-x, repeat-y; 
+	position: absolute
+	margin:0;
+	height:auto;
+	padding:1px;
+}
+
+.hdbgname{
+	width: 100%;
+	height: 30px;
+	margin: 0;
+	background-color: rgba(102, 102, 102, 0.7);
+	background: rgba(102, 102, 102, 0.7);
+	color: rgba(102, 102, 102, 0.7);
+	-webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
+	box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow:inset 0px 1px 21px #000000;
+	-webkit-box-shadow:inset 0px 1px 21px #000000;
+	box-shadow:inset 0px 1px 21px #000000;
+}	
+.hdbgfont{
+	text-align: left;
+	line-height:17px !important;
+	padding-left: 10px;
+	font: 12px Ubuntu;
+	font-weight: bold;
+	color: rgba(0,0,0,1.0);
+	text-shadow: 2px 2px 2px rgba(255,255,255,1.0);
+}
+.hdbgtitel1{
+	text-align: left;
+	padding-left: 10px;
+	font: 16px Ubuntu;
+	font-weight:bold;
+	text-indent: 0px;
+	line-height: 30px;
+	color: rgba(255,255,255,1.0);
+	text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+}
+.hdbgtitel1:hover{
+	font: 18px Ubuntu;
+	padding-left: 10px;
+	font-weight:bold;
+	text-indent: 0px;
+	line-height: 25px;
+	color: rgba(255,255,255,1.0);
+	text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+}
+
+.hdbgposi{
+	margin: 0 auto;
+	padding-bottom: 5px;
+	text-align: center;
+	width: 100%;
+}
+.table{
+	width:90% !important;
+}
+
+.hdbgdark {
+	border:1px solid #272727;
+	background-image: url("/include/images/downloads/pattern.png");
+  	background-repeat: repeat-x, repeat-y;
+	background-color: rgba(102, 102, 102, 0.7);
+	font: 18px Ubuntu;
+	font-weight: bold;
+	text-indent: 10px;
+	color: rgba(255,255,255,1.0);
+	text-shadow: 2px 2px 2px rgba(0,0,0,1.0);
+	-moz-box-shadow:inset 1px 0px 16px #000000;
+	-webkit-box-shadow:inset 1px 0px 16px #000000;
+	box-shadow:inset 1px 0px 16px #000000;
+	height:35px;
+	line-height:30px !important; 
+	 } 
+	 
+.hdbgmite {
+	text-indent:10px;
+	text-align:left;
+	height:55px; 
+	background-image: -webkit-linear-gradient(top, #FFFFFF, #cccccc);
+	background-image: -moz-linear-gradient(top, #FFFFFF, #cccccc);
+    background-image: -o-linear-gradient(top, #FFFFFF, #cccccc);
+	background-image: -ms-linear-gradient(top, #FFFFFF, #cccccc);
+  	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#cccccc'); } 
+
+.hdbgdarkmite {
+	font: 14px Ubuntu;
+	color: #000000;
+	border:1px solid #272727;
+	background-image: -webkit-linear-gradient(top, #FFFFFF, #cccccc);
+	background-image: -moz-linear-gradient(top, #FFFFFF, #cccccc);
+    background-image: -o-linear-gradient(top, #FFFFFF, #cccccc);
+	background-image: -ms-linear-gradient(top, #FFFFFF, #cccccc);
+  	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#cccccc');
+	text-align:left;
+	padding: 15px;}
+	
+.btn-large {
+	padding: 6px 13px !important;
+}
+
+.btn-large:hover,.btn:focus{
+	font: 16px Ubuntu !important;
+	}
