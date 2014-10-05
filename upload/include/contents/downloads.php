@@ -288,11 +288,11 @@ switch ( $menu->get(1) ) {
     $row['ssurl'] = ( $row['ssurl'] != '' ? '<img src="'.$row['ssurl'].'"style="max-width:350px; max-height:350px; float:left; border: none; padding-right:5px;" />' : '' );
     
     $row['surl']  = ( empty($row['surl']) ? '<button class="btn btn-danger btn-large"><i class="icon-desktop"></i> No Screen</button>' :
-                                            '<a href="javascript:void(0)" onclick="document.getElementById(\'light\').style.display=\'block\';document.getElementById(\'fade\').style.display=\'block\'"><button class="btn btn-info btn-large" ><i class="icon-desktop"></i> Screen ansehen</button></a>
-                                                <div id="light" class="hdbgwhite_content">
-                                                    <a href="javascript:void(0)" onclick="document.getElementById(\'light\').style.display=\'none\';document.getElementById(\'fade\').style.display=\'none\'" class="hdbgtextright"><i class="icon-remove-sign"></i>  Close</a></br>
+                                            '<a href="javascript:void(0)" onclick="document.getElementById(\'hdbg_light\').style.display=\'block\';document.getElementById(\'hdbg_fade\').style.display=\'block\'"><button class="btn btn-info btn-large" ><i class="icon-desktop"></i> Screen ansehen</button></a>
+                                                <div id="hdbg_light" class="hdbgwhite_content">
+                                                    <a href="javascript:void(0)" onclick="document.getElementById(\'hdbg_light\').style.display=\'none\';document.getElementById(\'hdbg_fade\').style.display=\'none\'" class="hdbgtextright"><i class="icon-remove-sign"></i>  Close</a></br>
                                                         <img src="'.$row['surl'].'" alt="Screenshot"  style="max-width:1050px; max-height:800px;border: none;"/></br>
-                                                <a href="javascript:void(0)" onclick="document.getElementById(\'light\').style.display=\'none\';document.getElementById(\'fade\').style.display=\'none\'" class="hdbgtextleft"><i class="icon-remove-sign"></i>  Close</a>            
+                                                <a href="javascript:void(0)" onclick="document.getElementById(\'hdbg_light\').style.display=\'none\';document.getElementById(\'hdbg_fade\').style.display=\'none\'" class="hdbgtextleft"><i class="icon-remove-sign"></i>  Close</a>            
                                                 </div>
                                             <div id="fade" class="hdbgblack_overlay"></div>' );
 

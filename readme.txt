@@ -1,8 +1,9 @@
-Ilch 1.1 P Download Modul:
-"""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Auf Basis des Downloadmoduls von IRVD weiter Entwickelt!!
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Beschreibung:
 -------------
-Diese Modul befindet sich noch in Entwicklung und funktioniert daher noch nicht !!!!!
+Diese Modul befindet sich noch in der Beta und kann daher noch Fehler haben !!
 
 Code and Design:
 ----------
@@ -11,6 +12,7 @@ Code and Design:
 
 Voraussetzungen:
 ----------------
+° IlchClan 1.1 P
 
 
 Installation:
@@ -20,9 +22,24 @@ Installation:
 ° Im Normalfall können alle Dateien überschrieben werden. 
 
 
+Tipps:
+-------------
+° Alle Bilder können im Backend Bereich (Admin) direkt hochgeladen werden.
+° Die Kategorie Bilder sollten eine Breite von 220px haben. 
+
 Ersetzt:
 -------------
- 
+Backend:
+° archiv.php
+° downloads.htm
+° upload.htm
+
+Frontent:
+° downloads.php
+° downloads.htm
+° downloads_show.htm
+
+Und einige Dateien werden neu Installiert + drei neue Msql Einträge werden neu gemacht.
 
 
 Bekannte Einschränkungen / Fehler:
