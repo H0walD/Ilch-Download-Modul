@@ -281,15 +281,22 @@ switch ( $menu->get(1) ) {
 		$tpl = new tpl ('downloads_show' );
 		$drecht = $row['drecht'];
     if ( $_SESSION['authright'] <= $drecht ) {
-		$row['downlink'] = '<a class="btn btn-success" href="index.php?downloads-down-'.$row['id'].'"><i class="icon-download"></i> Download</a>';
+		$row['downlink'] = '<a class="btn btn-success btn-large" href="index.php?downloads-down-'.$row['id'].'"><i class="icon-download"></i> Download</a>';
 		} else {
-		$row['downlink'] = '<a class="btn btn-danger" href="index.php?downloads-error"><i class="icon-download"></i> Download</a>'; 
+		$row['downlink'] = '<a class="btn btn-danger btn-large" href="index.php?downloads-error"><i class="icon-download"></i> Download</a>'; 
 		}
     $row['ssurl'] = ( $row['ssurl'] != '' ? '<img src="'.$row['ssurl'].'"style="max-width:350px; max-height:350px; float:left; border: none; padding-right:5px;" />' : '' );
     
-    $row['surl']  = ( empty($row['surl']) ? '<button class="btn btn-danger"><i class="icon-desktop"></i> No Screen</button>' : '<a class="btn btn-info" href="'.$row['surl'].'" target="_blank"><i class="icon-desktop"></i> Screen</a>' );
+    $row['surl']  = ( empty($row['surl']) ? '<button class="btn btn-danger btn-large"><i class="icon-desktop"></i> No Screen</button>' :
+                                            '<a href="javascript:void(0)" onclick="document.getElementById(\'light\').style.display=\'block\';document.getElementById(\'fade\').style.display=\'block\'"><button class="btn btn-info btn-large" ><i class="icon-desktop"></i> Screen ansehen</button></a>
+                                                <div id="light" class="hdbgwhite_content">
+                                                    <a href="javascript:void(0)" onclick="document.getElementById(\'light\').style.display=\'none\';document.getElementById(\'fade\').style.display=\'none\'" class="hdbgtextright"><i class="icon-remove-sign"></i>  Close</a></br>
+                                                        <img src="'.$row['surl'].'" alt="Screenshot"  style="max-width:1050px; max-height:800px;border: none;"/></br>
+                                                <a href="javascript:void(0)" onclick="document.getElementById(\'light\').style.display=\'none\';document.getElementById(\'fade\').style.display=\'none\'" class="hdbgtextleft"><i class="icon-remove-sign"></i>  Close</a>            
+                                                </div>
+                                            <div id="fade" class="hdbgblack_overlay"></div>' );
 
-    $row['demo']  = ( empty($row['demo']) ? '<button class="btn btn-danger"><i class="icon-share"></i> No Demo</button>' : '<a class="btn btn-warning" href="'.$row['demo'].'" target="_blank"><i class="icon-share"></i> Demo ansehen</a>' );
+    $row['demo']  = ( empty($row['demo']) ? '<button class="btn btn-danger btn-large"><i class="icon-share"></i> No Demo</button>' : '<a class="btn btn-warning btn-large" href="'.$row['demo'].'" target="_blank"><i class="icon-share"></i> Demo ansehen</a>' );
 
     $row['size']  = get_download_size($row['url']);
 		$row['descl'] = bbcode($row['descl']);

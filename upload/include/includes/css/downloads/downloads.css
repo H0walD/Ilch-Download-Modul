@@ -179,20 +179,25 @@ a.hdbgtooltip span {
 
 a.hdbgtooltip:hover span{
     display:inline; position:absolute; 
-    border:1px solid #272727; 
+    border:3px solid #272727; 
 	color:#FFF;
 	background-image: url("/include/images/downloads/pattern.png");
   	background-repeat: repeat-x, repeat-y; 
     background-color: #CCC;
 }
-.callout {z-index:20;position:absolute;border:0;top:-14px;left:120px;}
+.callout {
+	z-index:20;
+	position:absolute;
+	border:0;
+	top:-14px;
+	left:120px;
+	}
     
-/*CSS3 extras*/
-a.hdbgtooltip span
-{
-    border-radius:2px;        
-    box-shadow: 0px 0px 8px 4px #666;
-    /*opacity: 0.8;*/
+a.hdbgtooltip span{
+	border-radius:2px;        
+    -moz-box-shadow:inset 1px 0px 16px #000000;
+	-webkit-box-shadow:inset 1px 0px 16px #000000;
+	box-shadow:inset 1px 0px 16px #000000;
 }
 
 .hdbgpic{
@@ -203,6 +208,9 @@ a.hdbgtooltip span
 	margin:0;
 	height:auto;
 	padding:1px;
+	-moz-box-shadow:inset 1px 0px 16px #000000;
+	-webkit-box-shadow:inset 1px 0px 16px #000000;
+	box-shadow:inset 1px 0px 16px #000000;
 }
 
 .hdbgfont{
@@ -309,3 +317,61 @@ a.hdbgtooltip span
 background-color: #585858;
 border:1px solid #272727;
 }
+
+.hdbgblack_overlay {
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=80);
+}
+.hdbgwhite_content {
+    display: none;
+    position: fixed;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+	top: 10%;
+    max-width: 1050px;
+    max-height: 800px;
+    padding: 4px;
+    border:4px solid #272727;
+    background-color: #202020;
+    z-index:1002;
+	-moz-box-shadow:inset 1px 0px 16px #000000;
+	-webkit-box-shadow:inset 1px 0px 16px #000000;
+	box-shadow:inset 1px 0px 16px #000000;
+	overflow:auto;
+}
+.hdbgtextright {
+    float: right;
+	font: 16px Ubuntu !important;
+	color:#FFF;
+}
+
+.hdbgtextright:hover {
+    float: right;
+	font: 16px Ubuntu !important;
+	color:#CCC;
+}
+
+.hdbgtextleft {
+    float: left;
+	font: 16px Ubuntu !important;
+	color:#FFF;
+}
+
+.hdbgtextleft:hover {
+    float: left;
+	font: 16px Ubuntu !important;
+	color:#CCC;
+}
+
+
