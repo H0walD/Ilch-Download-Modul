@@ -288,13 +288,15 @@ switch ( $menu->get(1) ) {
     $row['ssurl'] = ( $row['ssurl'] != '' ? '<img src="'.$row['ssurl'].'"style="max-width:350px; max-height:350px; float:left; border: none; padding-right:5px;" />' : '' );
     
     $row['surl']  = ( empty($row['surl']) ? '<button class="btn btn-danger btn-large"><i class="icon-desktop"></i> No Screen</button>' :
-                                            '<a href="javascript:void(0)" onclick="document.getElementById(\'hdbg_light\').style.display=\'block\';document.getElementById(\'hdbg_fade\').style.display=\'block\'"><button class="btn btn-info btn-large" ><i class="icon-desktop"></i> Screen ansehen</button></a>
-                                                <div id="hdbg_light" class="hdbgwhite_content">
-                                                    <a href="javascript:void(0)" onclick="document.getElementById(\'hdbg_light\').style.display=\'none\';document.getElementById(\'hdbg_fade\').style.display=\'none\'" class="hdbgtextright"><i class="icon-remove-sign"></i>  Close</a></br>
-                                                        <img src="'.$row['surl'].'" alt="Screenshot"  style="max-width:1050px; max-height:800px;border: none;"/></br>
-                                                <a href="javascript:void(0)" onclick="document.getElementById(\'hdbg_light\').style.display=\'none\';document.getElementById(\'hdbg_fade\').style.display=\'none\'" class="hdbgtextleft"><i class="icon-remove-sign"></i>  Close</a>            
+                                            '<div id="overlay-screen" class="hdbgbox" style="display: none;" onclick="closeOverlay(\'screen\')">
+                                                <div>
+                                                    <header><a style="text-decoration:none;" class="hdbgclosepos" href="javascript:void(0)" onclick="closeOverlay(\'screen\')"><i class="icon-remove-sign"></i>  Close</a></header>
+                                                    <img class="hdbgimg-reposive" src="'.$row['surl'].'">
+                                                    <footer class="hdbgboxfont">'.$row['name'].'</footer>
                                                 </div>
-                                            <div id="fade" class="hdbgblack_overlay"></div>' );
+                                            </div>
+                                            <a href="javascript:void(0)" onclick="openOverlay(\'screen\')" class="btn btn-info btn-large" ><i class="icon-desktop"></i> Screen ansehen</a>
+                                            ' );
 
     $row['demo']  = ( empty($row['demo']) ? '<button class="btn btn-danger btn-large"><i class="icon-share"></i> No Demo</button>' : '<a class="btn btn-warning btn-large" href="'.$row['demo'].'" target="_blank"><i class="icon-share"></i> Demo ansehen</a>' );
 
@@ -355,7 +357,7 @@ switch ( $menu->get(1) ) {
       $design->header();
       echo '<table width="100%" class="border" border="0" cellspacing="2" cellpadding="3" align="center">
       <tr><td class="Chead" align="center"><b>Sie haben leider nicht die n&ouml;tigen Rechte um diesen Download nutzen zu k&ouml;nnen.</b></td>
-      </tr><tr class="Cdark"><td align="center"><a href="javascript:history.back();"><u>Zurück</u></a> oder <a href="/index.php"><u>Auf die Startseite</u></a></td></tr></table>';
+      </tr><tr class="Cdark"><td align="center"><a href="javascript:history.back();"><u>Zurï¿½ck</u></a> oder <a href="/index.php"><u>Auf die Startseite</u></a></td></tr></table>';
       $design->footer();
    break;
 }
