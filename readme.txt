@@ -3,7 +3,15 @@ Auf Basis des Downloadmoduls von IRVD weiter Entwickelt!!
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Beschreibung:
 -------------
-Diese Modul befindet sich noch in der Beta und kann daher noch Fehler haben !!
+° Diese Modul erweitert den Download Bereich.
+° Ihr habt die Möglichkeit Download Kategorien zu erstellen und jeweils ein Bild direkt im Adminbereich hochzuladen.
+° Ihr habt die Möglichkeit Screenshot oder Bilder für die Downloads im Adminbereich hochzuladen.
+° Ihr entscheidet ab welchem Recht ein Download zu Verfügung steht. Einstellbar bei jeder einzelnen Kategorie oder Download.
+° Demolink-Button,  Screenshot-Button (als Popup Vorschau) und Download-Button werden Rot angezeigt wenn man keine Rechte dafür hat, oder nichts eingetragen wurde.
+° Screenshot Bilder werden als Vorschau inkl. tooltip Angezeigt.
+usw. testet es einfach =)
+
+ 
 
 Code and Design:
 ----------
@@ -13,6 +21,7 @@ Code and Design:
 Voraussetzungen:
 ----------------
 ° IlchClan 1.1 P
+° Ilch bbcode 2.0P muss installiert sein http://www.ilch.de/downloads-show-1742.html
 
 
 Installation:
