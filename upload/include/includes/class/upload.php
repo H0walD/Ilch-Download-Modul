@@ -24,7 +24,8 @@ class Upload {
     }
     
     public function type(){
-        $this->pattern = (string) "/(\.". implode('|\.', func_get_args()).")/i";
+    	$types = func_get_args();
+        $this->pattern = (string) "/(\.". implode('|\.', $types).")/i";
         return $this;
     }
     
