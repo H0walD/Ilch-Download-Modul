@@ -16,16 +16,18 @@
 
             <table cellpadding="3" border="0" cellspacing="1" class="border">
                 <tr class="Chead">
-                    <td colspan="6"><b>Downloads</b></td>
+                    <td colspan="8"><b>Downloads</b></td>
                 </tr>
                 {EXPLODE}
                 <tr class="{class}">
                     <td><img width="30" src="{surl}" /></td>
                     <td>{name} {version}</td>
+                    <td align="center"><b>{rname}</b></td>
                     <td><a href="?archiv-downloads-e{id}#edit"><img src="include/images/icons/edit.gif" border="0" title="&auml;ndern" alt="&auml;ndern"></a></td>
                     <td><a href="javascript:del('{id}')"><img src="include/images/icons/del.gif" border="0" title="l&ouml;schen" alt="l&ouml;schen"></a></td>
                     <td><a href="?archiv-downloads-S{cat}-o{id}-{pos}"><img src="include/images/icons/pfeilo.gif" border="0" title="oben" alt="oben"></a></td>
                     <td><a href="?archiv-downloads-S{cat}-u{id}-{pos}"><img src="include/images/icons/pfeilu.gif" border="0" title="unten" alt="unten"></a></td>
+                    <td>(<a href="index.php?downloads-show-{id}#download-{id}" target="_blank">view@frontend</a>)</td>
                 </tr>
                 {EXPLODE}
             </table>
@@ -53,13 +55,18 @@
     <tr>
         <td>
             <a href="#" name="edit"></a>
-
+            <script type="text/javascript" src="include/includes/js/bbcode.js"></script> 
+            <script type="text/javascript" src="include/includes/js/interface.js"></script>
             <form action="admin.php?archiv-downloads" method="POST" name="form" enctype="multipart/form-data">
-	<input type="hidden" name="pkey" value="{pkey}">
+                <input type="hidden" name="pkey" value="{pkey}">
 
                 <table class="border" cellpadding="3" cellspacing="1" border="0">
                     <tr class="Chead">
                         <td colspan="2"><b>Downloads</b></td>
+                    </tr>
+                    <tr>
+                        <td class="Cmite">Download Recht</td>
+                        <td class="Cnorm"><select name="drecht">{_list_drecht@<option value="%1">%2</option>}</select></td>
                     </tr>
                     <tr>
                         <td class="Cmite">Name</td>
@@ -131,14 +138,14 @@
                     <tr class="Chead">
                         <td colspan="2"><b>Download Kategorien</b></td>
                     </tr>
-                    
+
                     <tr>
                         <td class="Cmite">Kategorie</td>
                         <td class="Cnorm">
                             <select name="Ccat">{Ccat}</select>
                         </td>
                     </tr>
-                    
+
                     <tr>
                         <td class="Cmite">Sichtbar ab</td>
                         <td class="Cnorm"><select name="Crecht">{Crecht}</select></td>
@@ -167,33 +174,33 @@
 </table>
 <script language="JavaScript" type="text/javascript">
 <!--
-  function openFiles () {
-    var val     = document.form.newurl.value;
-    var furl    = 'admin.php?archiv-downloads-upload=0&f=' + val;
-    var fname   = 'openfiles';
-    var foption = 'scrollbars=yes,resizable=yes,height=400,width=550,left=300,top=50';
-    var Fenster = window.open (furl, fname, foption);
-    Fenster.focus();
-  }
-  
-  function Kdel ( id1 ) {
-	
-    var x = confirm ( "do you really want to delete?" );
-		if ( x ) {
-		  document.location.href="?archiv-downloads-D"+id1;
-		}
-	}
-  function del ( id1 ) {
-    var x = confirm ( "do you really want to delete?" );
-		if ( x ) {
-		  document.location.href="?archiv-downloads-d"+id1;
-		}
-	}
-  
+    function openFiles() {
+        var val = document.form.newurl.value;
+        var furl = 'admin.php?archiv-downloads-upload=0&f=' + val;
+        var fname = 'openfiles';
+        var foption = 'scrollbars=yes,resizable=yes,height=400,width=550,left=300,top=50';
+        var Fenster = window.open(furl, fname, foption);
+        Fenster.focus();
+    }
+
+    function Kdel(id1) {
+
+        var x = confirm("do you really want to delete?");
+        if (x) {
+            document.location.href = "?archiv-downloads-D" + id1;
+        }
+    }
+    function del(id1) {
+        var x = confirm("do you really want to delete?");
+        if (x) {
+            document.location.href = "?archiv-downloads-d" + id1;
+        }
+    }
+
 //-->
 </script>
 <p></p>
 <div class="info_box">
-<p>Hier k&ouml;nnen Sie Dateien eintragen und Verwalten. Ausserdem k&ouml;nnen Sie hier die Kategorien der Dateien verwalten.</p>
-<p>Es werden alle Dateien einer Kategorie angezeigt, um Dateien einer Kategorie an zu zeigen bitte einfach Links auf den Namen der Kategorie klicken.</p>
+    <p>Hier k&ouml;nnen Sie Dateien eintragen und Verwalten. Ausserdem k&ouml;nnen Sie hier die Kategorien der Dateien verwalten.</p>
+    <p>Es werden alle Dateien einer Kategorie angezeigt, um Dateien einer Kategorie an zu zeigen bitte einfach Links auf den Namen der Kategorie klicken.</p>
 </div>
