@@ -5,167 +5,166 @@ Autor: Wille.G (H0walD)
 Copyright: by www.howald-design.ch
 ========================================================== */ 
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:300italic,300,400italic,400,500italic,500,700italic,700);
-@import url(/include/includes/css/downloads/font-awesome.css);
 
 
 .hdbgaussen{
-	float:left;
-	width:230px;
-	height:auto;
-	padding:7px;
-	margin:0;
+    float:left;
+    width:230px;
+    height:auto;
+    padding:7px;
+    margin:0;
 }
 
 .hdbginnen{
-	float:left;
-	border:1px solid #272727;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	background-color: #CCC;
-	background-image: url("/include/images/downloads/pattern.png");
-  	background-repeat: repeat-x, repeat-y; 
-	position: absolute
-	margin:0;
-	height:auto;
-	padding:1px;
+    float:left;
+    border:1px solid #272727;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #CCC;
+    background-image: url('../../../images/downloads/pattern.png');
+    background-repeat: repeat-x, repeat-y; 
+    position: absolute
+        margin:0;
+    height:auto;
+    padding:1px;
 }
 
 .hdbgtitelplatz{
-	float: left;
-	width: 230px;
-	height: 30px;
-	margin: 0;
-	background-color: rgba(102, 102, 102, 0.7);
-	background: rgba(102, 102, 102, 0.7);
-	color: rgba(102, 102, 102, 0.7);
-	-webkit-border-top-left-radius: 5px;
-	-webkit-border-top-right-radius: 5px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-topright: 5px;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	-webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
-	-moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
-	box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
-	-moz-box-shadow:inset 0px 1px 21px #000000;
-	-webkit-box-shadow:inset 0px 1px 21px #000000;
-	box-shadow:inset 0px 1px 21px #000000;
+    float: left;
+    width: 230px;
+    height: 30px;
+    margin: 0;
+    background-color: rgba(102, 102, 102, 0.7);
+    background: rgba(102, 102, 102, 0.7);
+    color: rgba(102, 102, 102, 0.7);
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow:inset 0px 1px 21px #000000;
+    -webkit-box-shadow:inset 0px 1px 21px #000000;
+    box-shadow:inset 0px 1px 21px #000000;
 }
 
 .hdbgplatzh{
-	float: left;
-	width: 230px;
-	height: 20px;
-	margin: 0;
+    float: left;
+    width: 230px;
+    height: 20px;
+    margin: 0;
 }
 .hdbgtitel{
-	text-align: left;
-	font: 16px Ubuntu;
-	font-weight:bold;
-	text-indent: 0px;
-	line-height: 30px;
-	color: rgba(255,255,255,1.0);
-	text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+    text-align: left;
+    font: 16px Ubuntu;
+    font-weight:bold;
+    text-indent: 0px;
+    line-height: 30px;
+    color: rgba(255,255,255,1.0);
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
 }
 .hdbgtitel:hover{
-	font: 18px Ubuntu;
-	font-weight:bold;
-	text-indent: 0px;
-	line-height: 25px;
-	color: rgba(255,255,255,1.0);
-	text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+    font: 18px Ubuntu;
+    font-weight:bold;
+    text-indent: 0px;
+    line-height: 25px;
+    color: rgba(255,255,255,1.0);
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
 }
 
 .hdbgimginnen{
-	border:1px solid #272727;
-	margin:6px 0 6px 0;
-	-moz-box-shadow: 3px 4px 4px rgba(0,0,0,0.65);
-	-webkit-box-shadow: 3px 4px 4px rgba(0,0,0,0.65);
-	box-shadow: 3px 4px 4px rgba(0,0,0,0.65);
+    border:1px solid #272727;
+    margin:6px 0 6px 0;
+    -moz-box-shadow: 3px 4px 4px rgba(0,0,0,0.65);
+    -webkit-box-shadow: 3px 4px 4px rgba(0,0,0,0.65);
+    box-shadow: 3px 4px 4px rgba(0,0,0,0.65);
 }
-		
+
 .hdbgdown{
-	cursor:url("/include/images/downloads/smil.png"),auto;
-	line-height: 30px;
-	color: rgba(201,201,201,1.0);
-	text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
-	font: 18px Ubuntu;
-	height: 30px;
-	background-color: rgba(102, 102, 102, 0.7);
-	background: rgba(102, 102, 102, 0.7);
-	-webkit-border-bottom-left-radius: 5px;
-	-webkit-border-bottom-right-radius: 5px;
-	-moz-border-radius-bottomleft: 5px;
-	-moz-border-radius-bottomright: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	-webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
-	-moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
-	box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
-	-moz-box-shadow:inset 0px 1px 21px #000000;
-	-webkit-box-shadow:inset 0px 1px 21px #000000;
-	box-shadow:inset 0px 1px 21px #000000;
+    cursor:pointer;
+    line-height: 30px;
+    color: rgba(201,201,201,1.0);
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+    font: 18px Ubuntu;
+    height: 30px;
+    background-color: rgba(102, 102, 102, 0.7);
+    background: rgba(102, 102, 102, 0.7);
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow:inset 0px 1px 21px #000000;
+    -webkit-box-shadow:inset 0px 1px 21px #000000;
+    box-shadow:inset 0px 1px 21px #000000;
 }
 
 .hdbgbutton {
-	cursor:url("/include/images/downloads/smil.png"),auto;
-	margin:4px auto 4px auto;
-	-moz-box-shadow:inset 0px 1px 0px 0px #e6e3e6;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #e6e3e6;
-	box-shadow:inset 0px 1px 0px 0px #e6e3e6;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cfcfcf), color-stop(1, #8f8f8f) );
-	background:-moz-linear-gradient( center top, #cfcfcf 5%, #8f8f8f 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#cfcfcf', endColorstr='#8f8f8f');
-	background-color:#cfcfcf;
-	-webkit-border-top-left-radius:0px;
-	-moz-border-radius-topleft:0px;
-	border-top-left-radius:0px;
-	-webkit-border-top-right-radius:10px;
-	-moz-border-radius-topright:10px;
-	border-top-right-radius:10px;
-	-webkit-border-bottom-right-radius:10px;
-	-moz-border-radius-bottomright:10px;
-	border-bottom-right-radius:10px;
-	-webkit-border-bottom-left-radius:0px;
-	-moz-border-radius-bottomleft:0px;
-	border-bottom-left-radius:0px;
-	text-indent:-20px;
-	border:1px solid #272727;
-	display:inline-block;
-	color: rgba(255,255,255,1.0);
-	font: 18px Ubuntu;
-	font-weight:bold;
-	font-style:normal;
-	height:20px;
-	line-height:20px;
-	width:50px;
-	text-decoration:none;
-	text-align:center;
-	text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+    cursor:pointer;
+    margin:4px auto 4px auto;
+    -moz-box-shadow:inset 0px 1px 0px 0px #e6e3e6;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #e6e3e6;
+    box-shadow:inset 0px 1px 0px 0px #e6e3e6;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cfcfcf), color-stop(1, #8f8f8f) );
+    background:-moz-linear-gradient( center top, #cfcfcf 5%, #8f8f8f 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#cfcfcf', endColorstr='#8f8f8f');
+    background-color:#cfcfcf;
+    -webkit-border-top-left-radius:0px;
+    -moz-border-radius-topleft:0px;
+    border-top-left-radius:0px;
+    -webkit-border-top-right-radius:10px;
+    -moz-border-radius-topright:10px;
+    border-top-right-radius:10px;
+    -webkit-border-bottom-right-radius:10px;
+    -moz-border-radius-bottomright:10px;
+    border-bottom-right-radius:10px;
+    -webkit-border-bottom-left-radius:0px;
+    -moz-border-radius-bottomleft:0px;
+    border-bottom-left-radius:0px;
+    text-indent:-20px;
+    border:1px solid #272727;
+    display:inline-block;
+    color: rgba(255,255,255,1.0);
+    font: 18px Ubuntu;
+    font-weight:bold;
+    font-style:normal;
+    height:20px;
+    line-height:20px;
+    width:50px;
+    text-decoration:none;
+    text-align:center;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
 }
 
 .hdbgcopy{
-	text-align: right;
-	font: 14px Ubuntu;
-	font-weight: bold;
-	color: rgba(0,0,0,0.6);
-	text-shadow: 2px 2px 2px rgba(255,255,255,1.0);
+    text-align: right;
+    font: 14px Ubuntu;
+    font-weight: bold;
+    color: rgba(0,0,0,0.6);
+    text-shadow: 2px 2px 2px rgba(255,255,255,1.0);
 }
 
 .hdbglink{
-	text-align: right;
-	font: 16px Ubuntu;
-	font-weight: bold;
-	color: rgba(0,0,0,1.0);
-	text-shadow: 2px 2px 2px rgba(255,255,255,1.0);
+    text-align: right;
+    font: 16px Ubuntu;
+    font-weight: bold;
+    color: rgba(0,0,0,1.0);
+    text-shadow: 2px 2px 2px rgba(255,255,255,1.0);
 }
 .hdbglink:hover{
-	text-align: right;
-	font: 16px Ubuntu;
-	font-weight: bold;
-	color: rgba(0,0,0,0.6);
-	text-shadow: 2px 2px 2px rgba(255,255,255,1.0);
+    text-align: right;
+    font: 16px Ubuntu;
+    font-weight: bold;
+    color: rgba(0,0,0,0.6);
+    text-shadow: 2px 2px 2px rgba(255,255,255,1.0);
 }
 
 a.hdbgtooltip {outline:none; }
@@ -180,138 +179,142 @@ a.hdbgtooltip span {
 a.hdbgtooltip:hover span{
     display:inline; position:absolute; 
     border:3px solid #272727; 
-	color:#FFF;
-	background-image: url("/include/images/downloads/pattern.png");
-  	background-repeat: repeat-x, repeat-y; 
+    color:#FFF;
+    /* 
+        include/includes/css/downloads/downloads.css 
+        include/images/downloads/pattern.png
+    */
+    background-image: url('../../../images/downloads/pattern.png');
+    background-repeat: repeat-x, repeat-y; 
     background-color: #CCC;
 }
 .callout {
-	z-index:20;
-	position:absolute;
-	border:0;
-	top:-14px;
-	left:120px;
-	}
-    
+    z-index:20;
+    position:absolute;
+    border:0;
+    top:-14px;
+    left:120px;
+}
+
 a.hdbgtooltip span{
-	border-radius:2px;        
+    border-radius:2px;        
     -moz-box-shadow:inset 1px 0px 16px #000000;
-	-webkit-box-shadow:inset 1px 0px 16px #000000;
-	box-shadow:inset 1px 0px 16px #000000;
+    -webkit-box-shadow:inset 1px 0px 16px #000000;
+    box-shadow:inset 1px 0px 16px #000000;
 }
 
 .hdbgpic{
-	background-color: #CCC;
-	background-image: url("/include/images/downloads/pattern.png");
-  	background-repeat: repeat-x, repeat-y; 
-	border:1px solid #272727;
-	margin:0;
-	height:auto;
-	padding:1px;
-	-moz-box-shadow:inset 1px 0px 16px #000000;
-	-webkit-box-shadow:inset 1px 0px 16px #000000;
-	box-shadow:inset 1px 0px 16px #000000;
+    background-color: #CCC;
+    background-image: url('../../../images/downloads/pattern.png');
+    background-repeat: repeat-x, repeat-y; 
+    border:1px solid #272727;
+    margin:0;
+    height:auto;
+    padding:1px;
+    -moz-box-shadow:inset 1px 0px 16px #000000;
+    -webkit-box-shadow:inset 1px 0px 16px #000000;
+    box-shadow:inset 1px 0px 16px #000000;
 }
 
 .hdbgfont{
-	text-align: left;
-	line-height:17px !important;
-	padding-left: 10px;
-	font: 12px Ubuntu;
-	font-weight: bold;
-	color: rgba(0,0,0,1.0);
-	text-shadow: 2px 2px 2px rgba(255,255,255,1.0);
+    text-align: left;
+    line-height:17px !important;
+    padding-left: 10px;
+    font: 12px Ubuntu;
+    font-weight: bold;
+    color: rgba(0,0,0,1.0);
+    text-shadow: 2px 2px 2px rgba(255,255,255,1.0);
 }
 .hdbgtitel1{
-	text-align: left;
-	padding-left: 10px;
-	font: 16px Ubuntu;
-	font-weight:bold;
-	text-indent: 0px;
-	line-height: 30px;
-	color: rgba(0,0,0,1.0);
-	text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);
+    text-align: left;
+    padding-left: 10px;
+    font: 16px Ubuntu;
+    font-weight:bold;
+    text-indent: 0px;
+    line-height: 30px;
+    color: rgba(0,0,0,1.0);
+    text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);
 }
 .hdbgtitel1:hover{
-	font: 16px Ubuntu;
-	padding-left: 10px;
-	font-weight:bold;
-	text-indent: 0px;
-	line-height: 30px;
-	color: rgba(0,0,0,0.75);
-	text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);
+    font: 16px Ubuntu;
+    padding-left: 10px;
+    font-weight:bold;
+    text-indent: 0px;
+    line-height: 30px;
+    color: rgba(0,0,0,0.75);
+    text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);
 }
 
 .hdbgposi{
-	margin: 0 auto;
-	padding-bottom: 5px;
-	text-align: center;
-	width: 100%;
+    margin: 0 auto;
+    padding-bottom: 5px;
+    text-align: center;
+    width: 100%;
 }
 .table{
-	width:90% !important;
+    width:90% !important;
 }
 
 .hdbgdark {
-	border:1px solid #272727;
-	background-color:#f5f5f5;
-	background-image:-moz-linear-gradient(top, #ffffff, #e6e6e6);
-	background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
-	background-image:-webkit-linear-gradient(top, #ffffff, #e6e6e6);
-	background-image:-o-linear-gradient(top, #ffffff, #e6e6e6);
-	background-image:linear-gradient(to bottom, #ffffff, #e6e6e6);
-	background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
-	font: 18px Ubuntu;
-	font-weight: bold;
-	text-indent: 10px;
-	color: rgba(0,0,0,1.0);
-	text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);
-	-moz-box-shadow:inset 1px 0px 16px #000000;
-	-webkit-box-shadow:inset 1px 0px 16px #000000;
-	box-shadow:inset 1px 0px 16px #000000;
-	height:30px;
-	line-height:30px !important; 
-	 } 
-	 
+    border:1px solid #272727;
+    background-color:#f5f5f5;
+    background-image:-moz-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+    background-image:-webkit-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image:-o-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image:linear-gradient(to bottom, #ffffff, #e6e6e6);
+    background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+    font: 18px Ubuntu;
+    font-weight: bold;
+    text-indent: 10px;
+    color: rgba(0,0,0,1.0);
+    text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow:inset 1px 0px 16px #000000;
+    -webkit-box-shadow:inset 1px 0px 16px #000000;
+    box-shadow:inset 1px 0px 16px #000000;
+    height:30px;
+    line-height:30px !important; 
+} 
+
 .hdbgmite {
-	text-indent:10px;
-	text-align:left;
-	height:55px; 
-	background-image: -webkit-linear-gradient(top, #FFFFFF, #cccccc);
-	background-image: -moz-linear-gradient(top, #FFFFFF, #cccccc);
+    text-indent:10px;
+    text-align:left;
+    height:55px; 
+    background-image: -webkit-linear-gradient(top, #FFFFFF, #cccccc);
+    background-image: -moz-linear-gradient(top, #FFFFFF, #cccccc);
     background-image: -o-linear-gradient(top, #FFFFFF, #cccccc);
-	background-image: -ms-linear-gradient(top, #FFFFFF, #cccccc);
-  	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#cccccc'); } 
+    background-image: -ms-linear-gradient(top, #FFFFFF, #cccccc);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#cccccc'); } 
 
 .hdbgdarkmite {
-	font: 14px Ubuntu;
-	color: #000000;
-	border:1px solid #272727;
-	background-image: -webkit-linear-gradient(top, #FFFFFF, #cccccc);
-	background-image: -moz-linear-gradient(top, #FFFFFF, #cccccc);
+    font: 14px Ubuntu;
+    color: #000000;
+    border:1px solid #272727;
+    background-image: -webkit-linear-gradient(top, #FFFFFF, #cccccc);
+    background-image: -moz-linear-gradient(top, #FFFFFF, #cccccc);
     background-image: -o-linear-gradient(top, #FFFFFF, #cccccc);
-	background-image: -ms-linear-gradient(top, #FFFFFF, #cccccc);
-  	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#cccccc');
-	text-align:left;
-	padding: 15px;
-	}
-	
-	/*  =========================================================
+    background-image: -ms-linear-gradient(top, #FFFFFF, #cccccc);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#cccccc');
+    text-align:left;
+    padding: 15px;
+}
+
+/*  =========================================================
 Datei: Bootstrap Buttons.css
 Datum: 2014-10-07
 Autor: Wille.G (H0walD)
 Copyright: by www.howald-design.ch
 ========================================================== */ 
 .btn{display:inline-block;*display:inline;*zoom:1;padding:6px 13px;margin-bottom:0;font-size:14px;line-height:20px;text-align:center;vertical-align:middle;cursor:pointer;color:#333333;text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);background-color:#f5f5f5;background-image:-moz-linear-gradient(top, #ffffff, #e6e6e6);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));background-image:-webkit-linear-gradient(top, #ffffff, #e6e6e6);background-image:-o-linear-gradient(top, #ffffff, #e6e6e6);background-image:linear-gradient(to bottom, #ffffff, #e6e6e6);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);border-color:#e6e6e6 #e6e6e6 #bfbfbf;border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);*background-color:#e6e6e6;filter:progid:DXImageTransform.Microsoft.gradient(enabled = false);border:1px solid #cccccc;*border:0;border-bottom-color:#b3b3b3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;*margin-left:.3em;-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);font: 16px Ubuntu;}.btn:hover,.btn:focus,.btn:active,.btn.active,.btn.disabled,.btn[disabled]{color:#333333;background-color:#e6e6e6;*background-color:#d9d9d9;}
-.btn:active,.btn.active{background-color:#cccccc \9;}
-.btn:first-child{*margin-left:0;}
-.btn-large:hover,.btn:focus{font: 16px Ubuntu !important;}
+.btn:active,.btn.active{background-color:#cccccc \9;text-decoration: none !important;}
+.btn:first-child{*margin-left:0;text-decoration: none !important;}
+.btn-large:hover,.btn:focus{font: 16px Ubuntu !important;text-decoration: none !important;}
 .btn:hover,.btn:focus{font: 16px Ubuntu !important;}
 .btn:hover,.btn:focus{color:#333333;text-decoration:none;background-position:0 -15px;-webkit-transition:background-position 0.1s linear;-moz-transition:background-position 0.1s linear;-o-transition:background-position 0.1s linear;transition:background-position 0.1s linear;}
 .btn:focus{outline:thin dotted #333;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px;}
 .btn.active,.btn:active{background-image:none;outline:0;-webkit-box-shadow:inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);-moz-box-shadow:inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);box-shadow:inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);}
 .btn.disabled,.btn[disabled]{cursor:default;background-image:none;opacity:0.65;filter:alpha(opacity=65);-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;}
-.btn-large{padding:6px 13px;font-size:17.5px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;font: 16px Ubuntu;}
+.btn-large{padding:6px 13px;font-size:17.5px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;font: 16px Ubuntu;text-decoration: none !important;}
 .btn-large [class^="icon-"],.btn-large [class*=" icon-"]{margin-top:4px;}
 .btn-small{padding:2px 10px;font-size:11.9px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
 .btn-small [class^="icon-"],.btn-small [class*=" icon-"]{margin-top:0;}
@@ -373,10 +376,10 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 .btn-large .caret{border-left-width:5px;border-right-width:5px;border-top-width:5px;}
 .btn-mini .caret,.btn-small .caret{margin-top:8px;}
 
-	
+
 .border {
-background-color: #585858;
-border:1px solid #272727;
+    background-color: #585858;
+    border:1px solid #272727;
 }
 
 /*  =========================================================
@@ -386,9 +389,9 @@ Autor: Wille.G (H0walD)
 Copyright: by www.howald-design.ch
 ========================================================== */ 
 body, html {
-  width: 100%;
-  height: 100%;
-  margin: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
 }
 
 .hdbgbox {
@@ -399,9 +402,9 @@ body, html {
     overflow: auto;
     top: 0px!important;
     left: 0px!important;
-	background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.8);
 }
-	
+
 .hdbgbox > div {
     margin-top: 2%!important;
     max-width: 1024px;
@@ -409,71 +412,71 @@ body, html {
     margin: auto;
     padding: 6px;
     text-align: center;
-	-moz-box-shadow: inset 0px 1px 21px #000000;
-	-webkit-box-shadow: inset 0px 1px 21px #000000;
-	box-shadow: inset 0px 1px 21px #000000;
-  	border: 4px solid #272727;
-	background-color:#272727;
-  }
+    -moz-box-shadow: inset 0px 1px 21px #000000;
+    -webkit-box-shadow: inset 0px 1px 21px #000000;
+    box-shadow: inset 0px 1px 21px #000000;
+    border: 4px solid #272727;
+    background-color:#272727;
+}
 
 .hdbgbox > div > header, .hdbgbox > div > footer {
-  color: #FFF;
-  background-color: #000;
-  height:auto;
+    color: #FFF;
+    background-color: #000;
+    height:auto;
 }
 
 .hdbgclosepos{
-	float:right;
-	margin:-9px -87px 0 0;
-	font: 16px Ubuntu;
-	font-weight: bold;
-	text-indent: 0px;
-	line-height: 25px;
-	color: rgba(0,0,0,0.8);
-  	text-decoration:none;
-	-moz-border-radius:10px; /* Firefox */
-	-webkit-border-radius:10px; /* Chrome, Safari */
-	-khtml-border-radius:10px; /* Konqueror */
-	border-radius:10px; /* CSS3 */
-	behavior:url(border-radius.htc); /* Internet Explorer */
-	width:80px;
-	height:25px;
-	background-color:rgba(255,255,255,0.4);
-	border: 1px solid rgba(255,255,255,0.9);
-	-webkit-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.9);
-	-moz-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.9);
-	box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.9);
+    float:right;
+    margin:-9px -87px 0 0;
+    font: 16px Ubuntu;
+    font-weight: bold;
+    text-indent: 0px;
+    line-height: 25px;
+    color: rgba(0,0,0,0.8);
+    text-decoration:none;
+    -moz-border-radius:10px; /* Firefox */
+    -webkit-border-radius:10px; /* Chrome, Safari */
+    -khtml-border-radius:10px; /* Konqueror */
+    border-radius:10px; /* CSS3 */
+    behavior:url(border-radius.htc); /* Internet Explorer */
+    width:80px;
+    height:25px;
+    background-color:rgba(255,255,255,0.4);
+    border: 1px solid rgba(255,255,255,0.9);
+    -webkit-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.9);
+    -moz-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.9);
+    box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.9);
 }
 .hdbgclosepos:hover{
-	font: 16px Ubuntu;
-	font-weight: bold;
-	background-color:rgba(255,255,255,0.9);
-	color: rgba(0,0,0,1.0);
-	text-indent: 0px;
-	line-height: 25px;
+    font: 16px Ubuntu;
+    font-weight: bold;
+    background-color:rgba(255,255,255,0.9);
+    color: rgba(0,0,0,1.0);
+    text-indent: 0px;
+    line-height: 25px;
 }
 
 .hdbgbox > div > footer {
-	background-color:rgba(0,0,0,0.3);
-	border: 2px solid rgba(255,255,255,0.1);
-	-moz-box-shadow: inset 0px 1px 21px #000000;
-	-webkit-box-shadow: inset 0px 1px 21px #000000;
-	box-shadow: inset 0px 1px 21px #000000;
+    background-color:rgba(0,0,0,0.3);
+    border: 2px solid rgba(255,255,255,0.1);
+    -moz-box-shadow: inset 0px 1px 21px #000000;
+    -webkit-box-shadow: inset 0px 1px 21px #000000;
+    box-shadow: inset 0px 1px 21px #000000;
 }
 
 .hdbgboxfont{
-	text-align: center;
-	font: 16px Ubuntu;
-	font-weight: bold;
-	text-indent: 0px;
-	line-height: 30px;
-	color: rgba(255,255,255,1.0);
-	text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
-  	text-decoration:none;
+    text-align: center;
+    font: 16px Ubuntu;
+    font-weight: bold;
+    text-indent: 0px;
+    line-height: 30px;
+    color: rgba(255,255,255,1.0);
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+    text-decoration:none;
 }
 
 .hdbgimg-reposive {
-  vertical-align: middle;
-  max-width: 1024px;
-  max-height: 735px;
+    vertical-align: middle;
+    max-width: 1024px;
+    max-height: 735px;
 }
