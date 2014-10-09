@@ -114,7 +114,7 @@ switch( $_GET['step'] ){
             dialog( 1, $title, 
                 "
                     Bevor Sie das Script Installieren k&ouml;nnen, m&uuml;ssen einige Einstellungen getestet werden.<br><br>
-                    Dr&uuml;ken Sie auf <b>System Testen</b> um fortzufahren!
+                    Dr&uuml;cken Sie auf <b>System Testen</b> um fortzufahren!
                 ");
 	break;
 	case 1:

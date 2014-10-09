@@ -226,7 +226,7 @@ switch ($menu->get(1)) {
                 $row['temp_surl'] = $row['surl'];
                 $row['surl'] = ( $row['surl'] != '' ?
                                 '<img src="' . $row['surl'] . '" alt="' . $row['name'] . ' ' . $row['version'] . '" title="' . $row['name'] . ' ' . $row['version'] . '" style="max-width:60px; " />' :
-                                '<img src="/include/images/downcats/na.png" style="max-width:60px;"/>'
+                                '<img src="include/images/downcats/na.png" style="max-width:60px;"/>'
                         );
                 $class = ( $class == 'Cmite' ? 'Cnorm' : 'Cmite' );
                 #optional code von Nero
