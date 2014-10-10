@@ -517,7 +517,7 @@ switch ($um) {
 
         $tpl->out(0);
         $class = 0;
-        $abf = "SELECT prefix_downloads.id,`cat`,`version`,prefix_downloads.name,pos,surl,demo,a.name AS rname FROM prefix_downloads LEFT JOIN prefix_grundrechte AS a ON prefix_downloads.drecht = a.id WHERE cat = 6 ORDER BY pos";
+        $abf = "SELECT prefix_downloads.id,`cat`,`version`,prefix_downloads.name,pos,surl,demo,a.name AS rname FROM prefix_downloads LEFT JOIN prefix_grundrechte AS a ON prefix_downloads.drecht = a.id WHERE cat = '".$menu->getE(2)."' ORDER BY pos";
 
         $erg = db_query($abf);
         while ($row = db_fetch_assoc($erg)) {
