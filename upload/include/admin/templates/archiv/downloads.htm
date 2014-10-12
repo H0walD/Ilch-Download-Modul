@@ -20,7 +20,7 @@
                 </tr>
                 {EXPLODE}
                 <tr class="{class}">
-                    <td><img width="30" src="{surl}" /></td>
+                    <td><img width="60" src="{surl}" /></td>
                     <td>{name} {version}</td>
                     <td align="center"><b>{rname}</b></td>
                     <td><a href="?archiv-downloads-e{id}#edit"><img src="include/images/icons/edit.gif" border="0" title="&auml;ndern" alt="&auml;ndern"></a></td>
@@ -100,8 +100,8 @@
                     <tr>
                         <td class="Cmite">Screenshot Url</td>
                         <td class="Cnorm">
-                            <input type="text" size="50" name="surl" value="{surl}" placeholder="URL oder Bild Hochladen" /><br />
-                            <input type="file" sitze="50" name="file" />
+                            <input id="surl_clear" type="text" size="50" name="surl" value="{surl}" placeholder="URL oder Bild Hochladen" /><br />
+                            <input type="file" sitze="50" name="file" onchange="document.getElementById('surl_clear').value = ''" />
                         </td>
                     </tr>
                     <tr>
@@ -165,6 +165,38 @@
                     <tr class="Cdark">
                         <td></td>
                         <td><input type="submit" value="Absenden" name="Csub" /></td>
+                    </tr>
+                </table>
+            </form>
+            <p></p>
+            <form action="admin.php?archiv-noimage" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="Cpkey" value="{Cpkey}">
+
+                <table class="border" width="366" cellpadding="3" cellspacing="1" border="0">
+                    <tr class="Chead">
+                        <td colspan="2"><b>No Image</b></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="Cnorm" align="center">
+                            <p>
+                                <b>Hier k&ouml;nnen Sie, ein anderes "noImage" Hochladen</b><br />
+                                <small>Damit alle Grafiken im Frontend richtig dargestellt werden, empfielt es sich die Bilder sowohl von Kategorien und Downloads, immer in der gleiche Gr&ouml;sse hoch zu Laden!</small></p>
+                            <p align="center">
+                                <b>Eigenschaften</b><br />
+                                <small>{0} x {1} pixel</small>
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="Cnorm"><img width="356" src="include/images/downcats/na.png"></td>
+                    </tr>
+                    <tr>
+                        <td class="Cnorm"><input type="file" name="file" style="width: 356px;" /></td>
+                    </tr>
+                    <tr class="Cdark">
+                        <td><input type="submit" value="Hochladen" name="Upload" /></td>
                     </tr>
                 </table>
             </form>

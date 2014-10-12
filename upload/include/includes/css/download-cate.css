@@ -1,0 +1,50 @@
+h1.downloads {
+    padding: 5px 20px;
+    margin-bottom: 0;
+    border-bottom: 3px solid rgba(255,255,255, 0.3);
+}
+
+section#kategorie > a {
+    float: left;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 5px;
+    text-decoration: none;
+}
+section#kategorie > a > header {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 3px solid rgba(127, 127, 127, 0.5);
+}
+section#kategorie > a > header > h1 {
+    font-size: 16px;
+    background-color: rgba(127, 127, 127, 0.45);
+    margin: 0 20px;
+    border-radius: 5px 5px 0 0;
+}
+section#kategorie > a > #content {
+    position: relative;
+}
+section#kategorie > a > #content > img {
+    background-color: rgba(255,255,255,0.05);
+    width: 100%;
+    height: auto;
+}
+section#kategorie > a > #content > div {
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.6);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #FFF;
+    font-size: 16px;
+    text-align: center;
+    border-top: 5px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 3px solid rgba(255, 255, 255, 0.05);
+}
+section#kategorie > a > footer {
+    text-align: center;
+}

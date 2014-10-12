@@ -1,14 +1,12 @@
 <?php
 
-#  Script Copyright by: Manuel Staechele
-#  Support: www.ilch.de
-#  Ueberarbeitung copyright by honklords.de
-#  erstellt von Topolino
-#  seite: www.honklords.de
-#  Support auf www.honklords.de
+#   Copyright by: Manuel
+#   Support: www.ilch.de
 
 
 defined('main') or die('no direct access');
+
+require_once 'include/includes/class/image.php';
 
 function get_cats_title($catsar) {
     $l = '';
@@ -101,9 +99,7 @@ function icUpload() {
         }
 
         if (
-                ($fende != 'rar' AND $fende != 'zip' AND $fende != 'tar')
-
-                OR (
+                ($fende != 'rar' AND $fende != 'zip' AND $fende != 'tar') OR (
                 $rtype != 'application/x-rar' AND
                 $rtype != 'application/x-zip' AND
                 $rtype != 'application/x-tar')
@@ -159,30 +155,17 @@ switch ($menu->get(1)) {
         $design = new design($title, $hmenu);
         $design->header();
         $tpl = new tpl('downloads');
-        require_once('include/contents/downloadsinfo.php');
+        $tpl->out(0);
         $tpl->set('cid', $cid);
-
-        $i = 0;
-        $z = 3;
-
-        $erg = db_query("SELECT id,name,`desc`,img FROM prefix_downcats WHERE cat = " . $cid . " AND recht >= " . $_SESSION['authright'] . " ORDER BY pos");
+        $erg = db_query("SELECT id,name,`desc`, img FROM prefix_downcats WHERE cat = " . $cid . " AND recht >= " . $_SESSION['authright'] . " ORDER BY pos");
         if (db_num_rows($erg) > 0) {
             $tpl->out(1);
             $class = 'Cnorm';
             while ($row = db_fetch_assoc($erg)) {
                 $row['files'] = count_files($row['id']);
                 $class = ( $class == 'Cmite' ? 'Cnorm' : 'Cmite' );
-                #optional code von Nero
-                $row['footer1'] = '';
-                $row['footer2'] = '';
-                if ($i % $z == 0) {
-                    $row['footer1'] = '<tr>';
-                }
-                if ($i % $z == $z - 1) {
-                    $row['footer2'] = '</tr>';
-                } $i++;
-                #optional code ende
                 $row['class'] = $class;
+                $row['img'] = Image::thumb(2, $row['img']);
                 $tpl->set_ar_out($row, 2);
             }
             $tpl->out(3);
@@ -215,32 +198,17 @@ switch ($menu->get(1)) {
         $tpl->set('POM', $POM);
         $tpl->set('DOM', $DOM);
         $tpl->set('DAM', $DAM);
-        $i = 0;
-        $z = 2;
-        $erg = db_query("SELECT id,name,version,surl,ssurl,`desc`,downs,DATE_FORMAT(time,'%d.%m.%Y') as datum FROM prefix_downloads WHERE cat = " . $cid . " ORDER BY time DESC");
+
+        $erg = db_query("select id,name,version,surl,ssurl,`desc`,downs,DATE_FORMAT(time,'%d.%m.%Y') as datum from prefix_downloads WHERE cat = " . $cid . " ORDER BY " . $sortierung);
         if (db_num_rows($erg) > 0) {
             $tpl->out(4);
             $class = 'Cnorm';
             while ($row = db_fetch_assoc($erg)) {
                 # smal screenshot url
-                $row['temp_surl'] = $row['surl'];
-                $row['surl'] = ( $row['surl'] != '' ?
-                                '<img src="' . $row['surl'] . '" alt="' . $row['name'] . ' ' . $row['version'] . '" title="' . $row['name'] . ' ' . $row['version'] . '" style="max-width:60px; " />' :
-                                '<img src="include/images/downcats/na.png" style="max-width:60px;"/>'
-                        );
+                $row['ssurl'] = ( (file_exists($row['ssurl']) AND $row['ssurl'] != '') ? '<img src="' . $row['ssurl'] . '" alt="' . $row['name'] . ' ' . $row['version'] . '" title="' . $row['name'] . ' ' . $row['version'] . '" style="float:left; border: none; padding-right:3px;" />' : '' );
                 $class = ( $class == 'Cmite' ? 'Cnorm' : 'Cmite' );
-                #optional code von Nero
-                $row['footer3'] = '';
-                $row['footer4'] = '';
-                if ($i % $z == 0) {
-                    $row['footer3'] = '<tr>';
-                }
-                if ($i % $z == $z - 1) {
-                    $row['footer4'] = '</tr>';
-                } $i++;
-                #optional code ende
-
                 $row['class'] = $class;
+                $row['img'] = Image::thumb(2, $row['surl']);
                 $tpl->set_ar_out($row, 5);
             }
             $tpl->out(6);
@@ -249,7 +217,7 @@ switch ($menu->get(1)) {
         if ($cid == 0 AND $allgAr['archiv_down_userupload'] == 1 AND loggedin() AND is_writeable('include/downs/downloads/user_upload')) {
             $tpl->out(7);
         }
-
+        Image::copyright();
         $design->footer();
         break;
     case 'show' :
@@ -257,17 +225,16 @@ switch ($menu->get(1)) {
         $fid = escape($menu->get(2), 'integer');
         $erg = db_query("
             SELECT 
-                prefix_downloads.cat,ssurl,surl,url,demo,hits,
-                vote_klicks,vote_wertung,prefix_downloads.name,
-                version,creater,downs,descl,drecht,prefix_downloads.id,
-                DATE_FORMAT(time,'%d.%m.%Y') as datum,
-                prefix_grundrechte.name AS download_recht
+                prefix_downloads.cat,drecht,demo,
+                ssurl,surl,url,hits,vote_klicks,vote_wertung,prefix_downloads.name,version,
+                creater,downs,descl,prefix_downloads.id,DATE_FORMAT(time,'%d.%m.%Y') as datum,
+                prefix_grundrechte.name AS right_name
             FROM prefix_downloads 
-                LEFT JOIN prefix_downcats ON prefix_downcats.id = prefix_downloads.cat 
-                LEFT JOIN prefix_grundrechte ON prefix_downloads.drecht = prefix_grundrechte.id
+                LEFT JOIN prefix_downcats ON prefix_downcats.id = prefix_downloads.cat
+                LEFT JOIN prefix_grundrechte ON prefix_grundrechte.id = prefix_downloads.drecht
             WHERE prefix_downloads.id = " . $fid . " AND (" . $_SESSION['authright'] . " <= prefix_downcats.recht OR (prefix_downloads.cat = 0 AND prefix_downcats.recht IS NULL))
-            ;");
-        
+        ");
+
         if (@db_num_rows($erg) <> 1) {
             $title = $allgAr['title'] . ' :: Downloads ';
             $hmenu = '<a class="smalfont" href="?downloads">Downloads</a>';
@@ -280,7 +247,7 @@ switch ($menu->get(1)) {
         $row = db_fetch_assoc($erg);
 
         # umfrage einen hoch zaehlen ...
-        if ($menu->getA(3) == 'z' AND is_numeric($menu->getE(3)) AND ! isset($_SESSION['downDoVote'][$row['id']]) AND loggedin()) {
+        if ($menu->getA(3) == 'z' AND is_numeric($menu->getE(3)) AND !isset($_SESSION['downDoVote'][$row['id']]) AND loggedin()) {
             $_SESSION['downDoVote'][$row['id']] = 'o';
             $row['vote_wertung'] = round(( ( $row['vote_wertung'] * $row['vote_klicks'] ) + $menu->getE(3) ) / ( $row['vote_klicks'] + 1 ), 3);
             $row['vote_klicks'] ++;
@@ -310,59 +277,89 @@ switch ($menu->get(1)) {
             $catname = '';
         }
         $tpl = new tpl('downloads_show');
-        $drecht = $row['drecht'];
-        if ($_SESSION['authright'] <= $drecht) {
-            $row['downlink'] = '<a class="btn btn-success btn-large" href="index.php?downloads-down-' . $row['id'] . '"><i class="icon-download"></i> Download</a>';
-        } else {
-            $row['downlink'] = '<a class="btn btn-danger btn-large" href="index.php?downloads-error"><i class="icon-download"></i> Download</a>';
-        }
-        $row['ssurl'] = ( $row['ssurl'] != '' ? '<img src="' . $row['ssurl'] . '"style="max-width:350px; max-height:350px; float:left; border: none; padding-right:5px;" />' : '' );
-
-        $row['surl'] = ( empty($row['surl']) ? '<button class="btn btn-danger btn-large"><i class="icon-desktop"></i> No Screen</button>' :
-                        '<div id="overlay-screen" class="hdbgbox" style="display: none;" onclick="closeOverlay(\'screen\')">
-                                                <div>
-                                                    <header><a style="text-decoration:none;" class="hdbgclosepos" href="javascript:void(0)" onclick="closeOverlay(\'screen\')"><i class="icon-remove-sign"></i>  Close</a></header>
-                                                    <img class="hdbgimg-reposive" src="' . $row['surl'] . '">
-                                                    <footer class="hdbgboxfont">' . $row['name'] . '</footer>
-                                                </div>
-                                            </div>
-                                            <a href="javascript:void(0)" onclick="openOverlay(\'screen\')" class="btn btn-info btn-large" ><i class="icon-desktop"></i> Screen ansehen</a>
-                                            ' );
-
-        $row['demo'] = ( empty($row['demo']) ? '<button class="btn btn-danger btn-large"><i class="icon-share"></i> No Demo</button>' : '<a class="btn btn-warning btn-large" href="' . $row['demo'] . '" target="_blank"><i class="icon-share"></i> Demo ansehen</a>' );
-
+        //$row['ssurl'] = ( $row['ssurl'] != '' ? '<img src="' . $row['ssurl'] . '" alt="' . $row['name'] . ' ' . $row['version'] . '" title="' . $row['name'] . ' ' . $row['version'] . '" style="float:left; border: none; padding-right:5px;" />' : '' );
+        //$row['surl'] = ( empty($row['surl']) ? '' : '&nbsp;&nbsp;&nbsp; <a href="' . $row['surl'] . '" target="_blank">Demo/Screenshot</a>' );
         $row['size'] = get_download_size($row['url']);
         $row['descl'] = bbcode($row['descl']);
         $row['version_kl'] = (empty($row['version']) ? '' : '(' . $row['version'] . ')');
+
+        // DOWNLINK
+        if ($_SESSION['authright'] <= $row['drecht']) {
+            $row['prem_text'] = '';
+            $row['down_link'] = '<a class="down_link_true" href="index.php?downloads-down-' . $row['id'] . '">Download</a>';
+        } else {
+            $row['prem_text'] = '<div class="error_msg">Sie habe nicht die n&ouml;tigen Rechte, um diese Datei zu downloaden!<br><small>Um diese Datei zu Downloaden, brauchen Sie den Rang: ' . $row['right_name'] . '</small></div>';
+            $row['down_link'] = '<span class="down_link_false">Download</span>';
+        }
+
+        // DEMOLINK
+        if (!empty($row['demo'])) {
+            $row['demo_link'] = '<a class="down_link_true" href="' . $row['demo'] . '" target="_blank">Demo</a>';
+        } else {
+            $row['demo_link'] = '<span class="down_link_false">keine Demo</span>';
+        }
+
+        // ADMINLINK 
+        if (is_admin()) {
+            $row['edit_link'] = '<a class="down_link_true" href="admin.php?archiv-downloads-e' . $row['id'] . '#edit" target="_blank">Bearbeiten</a>';
+        } else {
+            $row['edit_link'] = '';
+        }
+
+
         $title = $allgAr['title'] . ' :: Downloads ' . $cattitle;
         $hmenu = '<a class="smalfont" href="?downloads">Downloads</a>' . $catname;
         $design = new design($title, $hmenu);
         $design->header();
         $tpl->set_ar_out($row, 0);
-        $design->footer();
-        break;
-    case 'down' :
-        $fid = $menu->get(2);
-        $erg = db_query("SELECT drecht FROM prefix_downloads LEFT JOIN prefix_downcats ON prefix_downcats.id = prefix_downloads.cat WHERE prefix_downloads.id = " . $fid . " AND (" . $_SESSION['authright'] . " <= prefix_downloads.drecht OR (prefix_downloads.cat = 0 AND prefix_downcats.recht IS NULL))");
-        if (@db_num_rows($erg) <> 1) {
-            $title = $allgAr['title'] . ' :: Downloads ';
-            $hmenu = '<a class="smalfont" href="?downloads">Downloads</a>';
-            $design = new design($title, $hmenu);
-            $design->header();
-            echo $lang['nopermission'];
-            $design->footer(1);
+
+        // Überprüfe ob img Vorhanden
+        if (!empty($row['surl']) && file_exists($row['surl'])) {
+            $row['surl'] = Image::thumb(3, $row['surl']);
+            $tpl->set_ar_out($row, 1);
+            $row['img_link'] = '<a class="down_link_true" href="#" onclick="openOverlay();">Screenshot</a>';
+        } else {
+            $row['img_link'] = '<span class="down_link_false">Screenshot</span>';
         }
 
-        $recht = @db_result(db_query("SELECT `recht` FROM `prefix_downcats` LEFT JOIN `prefix_downloads` ON `prefix_downcats`.`id` = `prefix_downloads`.`cat` WHERE `prefix_downloads`.`id` = $fid"), 0);
-        $recht = (is_int($recht) ? $recht : 0);
-        if (has_right($recht)) {
-            $row = db_fetch_assoc(db_query("SELECT url FROM prefix_downloads WHERE id = " . $fid));
-            $url = iurlencode($row['url']);
-        } else {
-            $url = 'http://' . $_SERVER["HTTP_HOST"] . dirname($_SERVER["SCRIPT_NAME"]) . '/index.php?downloads';
+        $tpl->set_ar_out($row, 2);
+        Image::copyright();
+        $design->footer();
+        //Download erlauben
+        $_SESSION['download'][$fid] = true;
+        break;
+    case 'down' :
+        $fid = intval($menu->get(2));
+        if (!isset($_SESSION['download'][$fid])) {
+            header('Location: ' . 'http://' . $_SERVER["HTTP_HOST"] . dirname($_SERVER["SCRIPT_NAME"]) . '/index.php?downloads');
+            break;
         }
-        db_query("UPDATE prefix_downloads SET downs = downs +1 WHERE id = " . $fid);
-        header('location: ' . $url);
+        $qry = db_query("SELECT d.`url`, IFNULL(c.`recht`,0) AS recht, drecht FROM `prefix_downloads` d LEFT JOIN `prefix_downcats` c ON c.`id` = d.`cat` WHERE d.`id` = $fid");
+        $row = db_fetch_assoc($qry);
+        if ($_SESSION['authright'] <= $row['drecht']) {
+            $url = 'http://' . $_SERVER["HTTP_HOST"] . dirname($_SERVER["SCRIPT_NAME"]) . '/index.php?downloads';
+            if ($qry !== false and has_right($row['recht'])) {
+                db_query("UPDATE prefix_downloads SET downs = downs +1 WHERE id = " . $fid);
+                if (file_exists($row['url'])) {
+                    header('Content-type: application/octet-stream');
+                    header('Content-Disposition: attachment; filename="' . basename($row['url']) . '"');
+                    readfile($row['url']);
+                    exit;
+                } else {
+                    $url = iurlencode($row['url']);
+                }
+                $error = false;
+            }
+            header('Location: ' . $url);
+        } else {
+            $title = $allgAr['title'] . ' :: Downloads :: noPermissions!';
+            $hmenu = 'noPermissions!';
+            $design = new design($title, $hmenu);
+            $design->header();
+            wd('index.php?downloads-show-' . $fid, 'Sie haben keine Berechtigung, um diese Datei zu Downloaden!');
+            Image::copyright();
+            $design->footer();
+        }
         break;
     case 'upload' :
         if ($allgAr['archiv_down_userupload'] == 1 AND loggedin() AND is_writeable('include/downs/downloads/user_upload')) {
@@ -380,16 +377,6 @@ switch ($menu->get(1)) {
 
             $design->footer();
         }
-        break;
-    case 'error' :
-        $title = $allgAr['title'] . ' :: Downloads Error';
-        $hmenu = '<a class="smalfont" href="?downloads">Downloads Error</a>';
-        $design = new design($title, $hmenu);
-        $design->header();
-        echo '<table width="100%" class="border" border="0" cellspacing="2" cellpadding="3" align="center">
-      <tr><td class="Chead" align="center"><b>Sie haben leider nicht die n&ouml;tigen Rechte um diesen Download nutzen zu k&ouml;nnen.</b></td>
-      </tr><tr class="Cdark"><td align="center"><a href="javascript:history.back();"><u>Zur&uuml;ck</u></a> oder <a href="/index.php"><u>Auf die Startseite</u></a></td></tr></table>';
-        $design->footer();
         break;
 }
 ?>

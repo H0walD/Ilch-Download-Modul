@@ -1,4 +1,7 @@
 <?php
+/*
+ * Copyright 2014 by Balthazar3k
+ */
 class Upload {
     
     protected $path;
@@ -8,6 +11,8 @@ class Upload {
     protected $pattern;
     
     protected $file;
+    
+    protected $file_type;
     
     protected $status = false;
     
@@ -24,8 +29,7 @@ class Upload {
     }
     
     public function type(){
-    	$types = func_get_args();
-        $this->pattern = (string) "/(\.". implode('|\.', $types).")/i";
+        $this->pattern = (string) "/(\.". implode('|\.', func_get_args()).")/i";
         return $this;
     }
     
@@ -38,9 +42,11 @@ class Upload {
                     return null;
                 }
 
-                $status = @preg_match($this->pattern, $val['name'], $res);
+                preg_match($this->pattern, $val['name'], $res);
 
-                if( !empty( $this->type ) && !$status ){
+                if( count($res) == 0 ){
+                    $this->file_type = $res[1];
+                    $this->status = false;
                     $this->errors[] = 'falscher datei type!';
                     return null;
                 }
@@ -57,6 +63,7 @@ class Upload {
                     $this->file = $this->path.$this->name;
                     return true;
                 } else {
+                    $this->status = false;
                     return null;
                 }
 
@@ -75,5 +82,6 @@ class Upload {
     public function errors(){
         return implode('', $this->errors);
     }
-} 
+        
+}
 ?>

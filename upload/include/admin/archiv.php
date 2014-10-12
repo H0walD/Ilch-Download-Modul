@@ -6,6 +6,8 @@ defined('main') or die('no direct access');
 defined('admin') or die('only admin access');
 
 require_once 'include/includes/class/upload.php';
+require_once 'include/includes/class/image.php';
+$resolutions = array(30, 150, 250, 768);
 
 if (!empty($_REQUEST['f']) and substr($_REQUEST['f'], 0, 23) != 'include/downs/downloads') {
     die('dont try to hack');
@@ -94,7 +96,7 @@ function archiv_downs_admin_showcats($id, $stufe) {
     $erg = db_query($q);
     if (db_num_rows($erg) > 0) {
         while ($row = db_fetch_object($erg)) {
-            echo '<tr class="Cmite"><td><img width="40" src="' . $row->img . '"></td>';
+            echo '<tr class="Cmite"><td><img src="'. Image::thumb(0, $row->img) .'"></td>';
             echo '<td>' . $stufe . '- <a href="admin.php?archiv-downloads-S' . $row->id . '">' . $row->name . '</a></td>';
             echo '<td align="center"><a href="admin.php?archiv-downloads-E' . $row->id . '#edit"><img src="include/images/icons/edit.gif" border="0"></a></td>';
             echo '<td align="center"><a href="javascript:Kdel(' . $row->id . ')"><img src="include/images/icons/del.gif" border="0"></a></td>';
@@ -145,6 +147,31 @@ function archiv_links_admin_selectcats($id, $stufe, &$output, $sel = 0) {
 $um = $menu->get(1);
 
 switch ($um) {
+    case 'noimage':
+        $upload = new Upload();
+        $image = new Image();
+        
+        // No Image hochladen
+        $upload->path('include/images/downcats/')
+            ->name('na')
+            ->type('png','jpg','gif')
+            ->init();
+        
+        // Bild zu PNG umwandeln
+        $image->source($upload->file())
+            ->convert2png();
+        
+        // Thumbnails erstelllen in 3 groeßen
+        $image->source('include/images/downcats/na.png')
+            ->height($resolutions)
+            ->thumbnails();
+
+        if( $upload->status() ){
+            wd('admin.php?archiv-downloads', 'noImage erfolgreich hochgeladen!', 0);
+        } else {
+            wd('admin.php?archiv-downloads', 'noImage <b>nicht</b> erfolgreich hochgeladen!', 10);
+        }
+    break;
     case 'downloads' :
         if ($menu->get(2) == 'upload') {
             $msg = '';
@@ -326,11 +353,17 @@ switch ($um) {
 
             $upload = new Upload();
             $upload->path('include/images/downloads/')
-                    ->type('jpg', 'png', 'gif', 'jpeg');
+                ->type('jpg', 'png', 'gif', 'jpeg');
 
             if (empty($_POST['surl'])) {
                 $upload->name($name)->init();
                 $_POST['surl'] = $upload->file();
+                $image = new Image();
+                
+                // Thumbnails erstellen
+                $image->source($upload->file())
+                    ->height($resolutions)
+                    ->thumbnails();
             }
 
             $_POST['cat'] = escape($_POST['cat'], 'integer');
@@ -372,10 +405,18 @@ switch ($um) {
             }
 
             $upload = new Upload();
+            $image = new Image();
+            
+            // Image Hochladen
             $upload->path('include/images/downcats/')
-                    ->name(md5($_POST['Cname']))
-                    ->type('jpg', 'png', 'gif', 'jpeg')
-                    ->init();
+                ->name(md5($_POST['Cname']))
+                ->type('jpg', 'png', 'gif', 'jpeg')
+                ->init();
+            
+            // Thumbnails erstellen
+            $image->source($upload->file())
+                ->height($resolutions)
+                ->thumbnails();
 
             if (empty($_POST['Cpkey'])) {
                 $pos = db_result(db_query("SELECT COUNT(*) FROM prefix_downcats WHERE cat = " . $_POST['Ccat']), 0);
@@ -514,15 +555,25 @@ switch ($um) {
         if ($allgAr['archiv_down_userupload'] == 1 AND is_writeable('include/downs/downloads/user_upload')) {
             $frei = '<tr class="Cmite"><td colspan="6"><a href="?archiv-downloads-Sa">User-Uploads freischalten</a></td></tr>';
         }
-
+        
+        $tpl->set_ar(array('any_download_id' => db_result(db_query('SELECT id FROM prefix_downloads LIMIT 1;'),0)));
         $tpl->out(0);
         $class = 0;
-        $abf = "SELECT prefix_downloads.id,`cat`,`version`,prefix_downloads.name,pos,surl,demo,a.name AS rname FROM prefix_downloads LEFT JOIN prefix_grundrechte AS a ON prefix_downloads.drecht = a.id WHERE cat = '".$menu->getE(2)."' ORDER BY pos";
+        $abf = "
+            SELECT 
+                prefix_downloads.id,`cat`,`version`,
+                prefix_downloads.name,pos,surl,demo,a.name AS rname 
+            FROM prefix_downloads 
+                LEFT JOIN prefix_grundrechte AS a ON prefix_downloads.drecht = a.id 
+            WHERE cat = '".$menu->getE(2)."' 
+            ORDER BY pos;
+        ";
 
         $erg = db_query($abf);
-        while ($row = db_fetch_assoc($erg)) {
+        while ($row = db_fetch_object($erg)) {
             $class = ($class == 'Cmite' ? 'Cnorm' : 'Cmite');
-            $row['class'] = $class;
+            $row->class = $class;
+            $row->surl = Image::thumb(0, $row->surl);
             $tpl->set_ar($row);
             $tpl->out(1);
         }
@@ -530,7 +581,7 @@ switch ($um) {
         $tpl->set_out('frei', $frei, 2);
         // cat
         if ($menu->getA(2) == 'E') {
-            $erg = db_query("SELECT id,cat as Ccat, recht as Crecht, name as Cname,pos as Cpos,`desc` as Cdesc FROM prefix_downcats WHERE id = '" . $menu->getE(2) . "'");
+            $erg = db_query("SELECT id,cat as Ccat, recht as Crecht, name as Cname,pos as Cpos,`desc` as Cdesc FROM prefix_downcats WHERE id = '" . $azk . "'");
             $_Cilch = db_fetch_assoc($erg);
             $_Cilch['Cpkey'] = $menu->getE(2);
         } else {
@@ -551,8 +602,9 @@ switch ($um) {
 
         $tpl->set_ar($_ilch);
         $tpl->set_ar($_Cilch);
+        $tpl->set_ar(getimagesize('include/images/downcats/na.png'));
         $tpl->out(3);
-
+        Image::copyright();
         $design->footer();
         break;
     // # # # # # # # # # # # # # # # # # #
