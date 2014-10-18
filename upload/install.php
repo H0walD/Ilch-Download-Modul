@@ -1,191 +1,237 @@
 <?php
+define("main", true);
 
-    $title = "Download Modul f&uuml;r ilch 1.1p";
-    $install_file = "install.sql";
-    $chmod = array(
-        "include/images/downloads/",
-        "include/images/downcats/"
-    );
-
-?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?=$title?></title>
-    <!--HEADER-->
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin&effect=shadow-multiple|3d">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
-    <style type="text/css"></style>
-    <!--HEADER END-->
-    <script type='text/javascript'>
-            $(document).ready(function() {
-                    $( "#dialog" ).dialog({
-                            autoOpen: true,
-                            resizable: false,
-                            modal: true,
-                            width: 500
-                    });
-
-                    $("#dialog[step=1]").dialog({
-                            buttons: {					
-                                    "System Testen": function() {
-                                            window.location.href = "?step="+ $(this).attr("step");
-                                    },
-                                    "Abbrechen": function(){
-                                            window.close();
-                                    }
-                            }
-                    });
-
-                    $("#dialog[step=2]").dialog({
-                            buttons: {					
-                                    "Reload": function() {
-                                            window.location.href = "?step=1";
-                                    },
-                                    "Abbrechen": function(){
-                                            window.close();
-                                    }
-                            }
-                    });
-
-                    $("#dialog[step=3]").dialog({
-                            buttons: {					
-                                    "Installieren": function() {
-                                            window.location.href = "?step="+ $(this).attr("step");
-                                    },
-                                    "Abbrechen": function(){
-                                            window.close();
-                                    }
-                            }
-                    });
-
-                    $("#dialog[step=4]").dialog({
-                            buttons: {					
-                                    "Fertig": function(){
-                                            window.location.href = "index.php";
-                                    }
-                            }
-                    });
-
-                    $("#dialog[step=5]").dialog({
-                            buttons: {					
-                                    "Dialog schliessen um Fehlermeldung zu sehen!": function(){
-                                            $(this).dialog('close');
-                                    },
-                                    "zur Seite": function(){
-                                            window.location.href = "admin.php?raidindex";
-                                    }
-                            }
-                    });
-            });
-    </script>
-    <style type="text/css">
-            body { 
-                    color: #FFF;
-                    text-align: left!important;
-            }
-
-            head, body, div {
-                    font-family: Ubuntu!important;
-                    font-size: 14px!important;
-            }
-
-
-
-    </style>
-</head>
-<body>
-<?php
-
-define( "main", true );
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+@ini_set('display_errors', 'On');
 
 include("include/includes/config.php");
 include("include/includes/loader.php");
+require('include/includes/class/install.php');
 
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
-@ini_set('display_errors','On');
+db_connect();
 
-switch( $_GET['step'] ){
-	default:
-            dialog( 1, $title, 
-                "
-                    Bevor Sie das Script Installieren k&ouml;nnen, m&uuml;ssen einige Einstellungen getestet werden.<br><br>
-                    Dr&uuml;cken Sie auf <b>System Testen</b> um fortzufahren!
-                ");
-	break;
-	case 1:
-		# Ordner die Schreibrechte Brauchen
-		$res = $error = array();
-		foreach( $chmod as $key => $path ){
-			if( !is_dir( $path ) ){
-				mkdir( $path );
-			}
-		
-			if( is_writeable( $path ) ){
-				$res[] = true;
-			}else{
-				$error[] = $path;
-				$res[] = false;
-			}
-		}
-		
-		if( in_array(false, $res) ){
-			$path = "<ul>\n<li>".implode("</li>\n<li>", $error)."</li>\n</ul>";
-			dialog( 2, "Error", "
-				Folgende Ordner exestieren nicht oder brauchen die n&ouml;tigen Schreibrechte (CHMOD 0777)
-				<p>
-					".$path."
-				</p>
-				Dr&uuml;cken Sie \"<b>Reload</b>\" um die Einstellungen noch ein mal zu &Uumlberpr&uuml;fen.
-			");
-		}else{
-			dialog( 3, $title, "
-				Sie k&ouml;nnen den <b>". $title ."</b> nun Installieren,<br />
-				es sind keine Fehler aufgetreten!
-			");
-		}
-	break;
-	
-	case 3:
-		db_connect();
-		$sqlStat = TRUE;
-		$sql_file = implode('',file($install_file));
-		$sql_file = preg_replace ("/(\015\012|\015|\012)/", "\n", $sql_file);
-		$sql_statements = explode(";\n",$sql_file);
-		foreach ( $sql_statements as $sql_statement ) {
-			if ( trim($sql_statement) != '' ) {
-				if ( !@db_query($sql_statement) ){
-					$sqlStat = FALSE;
-				}
-			}
-		}
-		
-		if( $sqlStat ){
-			$res = true;
-			$res = @unlink("install.php");
-			$res = @unlink($install_file);
-			
-			$removeText = ( $res ? "" : "<br />L&ouml;schen Sie die \"install.php\" und die \"".$install_file."\"" );
-			
-			dialog( 4, $title, "Eintrag in die MySQL Datenbank war <b>erfolgreich</b>!". $removeText);
-		}else{
-			dialog( 5, $title, "Installation in die Datenbank war <b>nicht</b> erfolgreich!");
-		}
-		
-		db_close();
-	break;
-}
+$install = new Install();
+$install->set_name('download')
+        ->set_version(100)
+        ->set_description()
+        ->set_folders();
 ?>
-</body>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+        <script type="text/javascript" src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
+        <link type="text/css" rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"/>
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+        <style>
+            body {
+                font-family: Ubuntu;
+                margin: 50px 0;
+            }
+        </style>
+        <title><?= $install->get_name() ?>-Modul <?= $install->get_version() ?></title>
+    </head>
+    <body>
+        <div class="col-lg-6 col-lg-offset-3 col-xs-12 col-md-12">
+            <h1 class="text-center">Installation von: <?= $install->get_name() ?>-Modul <b><?= $install->get_version() ?></b></h1>
+            <div class="text-center"><?= $install->get_description() ?></div>
+            <hr/>
+            <?php switch ($_GET['step']) {
+                default: ?>
+                    <section id="step-0">
+                        <div class="panel panel-<?= ($install->get_folder_status() ? 'success' : 'danger'); ?>">
+                            <div class="panel-heading">
+                                <b>&Uuml;berpr&uuml;fe Ordner f&uuml;r das <?= $install->get_name() ?>-Modul, ob alle Schreibrechte vorhanden sind!</b>
+                            </div>
+                                <?php if (!$install->get_folder_status()) : ?>
+                                <div class="panel-body text-info">
+                                    <b>Bitte &auml;ndern Sie die Schreibrechte f&uuml;r die fehlerhaften Verzeichnisse, dann k&ouml;nnen sie die Installation fortsetzen!
+                                        Es kann unter umst&auml;nden vorkommen, dass die Verzeichnisse garnicht exestieren, legen Sie diese dann Bitte an.</b>
+                                </div>
+                                <?php endif; ?>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Verzeichnis</th>
+                                        <th class="text-center">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $folders = $install->get_folders();
+                                    if (count($folders) > 0) :
+                                        foreach ($folders['path'] as $id => $path) :
+                                            ?>
+                                            <tr>
+                                                <td><?= $path ?></td>
+                                                <td class="<?= ( $folders['status'][$id] ? 'success' : 'danger') ?> text-center"><b><?= ( $folders['status'][$id] ? 'ok' : 'fehler') ?></b></td>
+                                            </tr>
+                                        <?php
+                                        endforeach;
+                                    else :
+                                        ?>
+                                        <tr>
+                                            <td colspan="2">Es sind keine Ordner zum &uuml;berpr&uuml;fen vorhanden!</td>
+                                        </tr>
+                                    <?php
+                                    endif;
+                                    ?>
+                                </tbody>
+                            </table>
+                            <div class="panel-footer text-right">
+                                <a href="?step=install_methodes" class="btn btn-<?= ($install->get_folder_status() ? 'success' : 'danger disabled'); ?>">Weiter zur Installation...</a>
+                            </div>
+                        </div>
+                    </section>
+                    <?php break;
+                    case 'install_methodes' : ?>
+                    <section>
+                        <p>
+                        <h3>Welche Art der Installation m&ouml;chten Sie vornehmen?</h3>
+                        Ihnen stehen folgende m&ouml;glichkeiten zur verf&uuml;gung!
+                        </p>
+
+                        <div class="alert alert-info" role="alert">
+                            Mit dem Klicken der Buttons "Installieren", "Update" oder "Deinstallieren" erkl&auml;ren Sie sich damit einverstanden, dass der Module entwickler & der entwickler des Installations Script auf Ihren eigenen wunsch das <b><?=$install->get_name()?></b> Modul installiert.
+                            Wir &uuml;bernnehmen keine Haftung an Sch&auml;den, die durch diese Script enstehen k&ouml;nnten. Wir empfehlen zu Ihrer eigen Sicherheit ein Backup zu erstellen, sowohl die Datein als auch die Datenbank.
+                        </div>
+
+                        <br />
+
+                        <div class="col-lg-12 col-md-12 col-xs-12">
+
+                            <?php if ($install->can_update()) : ?>
+                                <div class="col-lg-12 col-md-12 col-xs-12">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading"><b>Es sind <?= $install->get_update_num() ?>x Update's vorhanden!</b></div>
+                                        <div class="panel-body">
+                                            Hier werden nur alle Update's installiert, die Neu sind, sofern welche vorhanden sind!
+                                            <p>
+                                                <?= $install->list_updates() ?>
+                                            </p>
+                                        </div>
+                                        <div class="panel-footer text-center">
+                                            <a class="btn btn-success" href="?step=update">Installiere alle <b><?= $install->get_update_num() ?></b> Update's</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($install->updates_available() && $install->can_install()) : ?>
+                                <div class="col-lg-6 col-md-6 col-xs-12">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading"><b>Volle Installation</b></div>
+                                        <div class="panel-body">
+                                            Bei der Vollen installation handelt es sich um, der Hauptinstallation des $module und seiner gesamten Updates!
+                                        </div>
+                                        <div class="panel-footer text-center">
+                                            <a class="btn btn-success" href="?step=install">Installieren</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($install->can_install()) : ?>
+                                <div class="col-lg-6 col-md-6 col-xs-12">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading"><b>nur die erste Version installieren</b></div>
+                                        <div class="panel-body">
+                                            Es wird nur das Modul installiert, ohne irgendwelche Update's. Dadurch kann man Version 1.0 ausprobieren.
+                                        </div>
+                                        <div class="panel-footer text-center">
+                                            <a class="btn btn-success" href="?step=mininstall">Installieren</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($install->can_deinstall()) : ?>
+                                <div class="col-lg-6 col-md-6 col-xs-12">
+                                    <div class="panel panel-warning">
+                                        <div class="panel-heading"><b>Deinstallieren</b></div>
+                                        <div class="panel-body">
+                                            Es wird das Modul deinstalliert & versucht alle Datein zu entfernen.
+                                        </div>
+                                        <div class="panel-footer text-center">
+                                            <a class="btn btn-success" href="?step=deinstall">DeInstallieren</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </section>
+                    <?php
+                    break;
+                case 'install' :
+                    if ($install->is_installed())
+                        break;
+
+                    $install->module();
+                    $install->update();
+                    $install->log();
+                    ?>
+                    <div class="btn-group btn-group-justified">
+                        <a class="btn btn-info" href="index.php">auf die Startseite</a>
+                        <a class="btn btn-warning" href="?step=install_methodes">Installations &uuml;bersicht!</a>
+                        <!--<a class="btn btn-success" href="admin.php?install">Module im Adminbereich</a>-->
+                    </div>
+                    <?php
+                    break;
+                case 'mininstall' :
+                    if ($install->is_installed())
+                        break;
+
+                    $install->module();
+                    $install->log();
+                    ?>
+                    <div class="btn-group btn-group-justified">
+                        <a class="btn btn-info" href="index.php">auf die Startseite</a>
+                        <a class="btn btn-warning" href="?step=install_methodes">Installations &uuml;bersicht!</a>
+                    </div>
+                    <?php
+                    break;
+                case 'update' :
+                    if (!$install->is_installed())
+                        break;
+
+                    $install->update();
+                    $install->log();
+                    ?>
+                    <div class="btn-group btn-group-justified">
+                        <a class="btn btn-info" href="index.php">auf die Startseite</a>
+                        <a class="btn btn-warning" href="?step=install_methodes">Installations &uuml;bersicht!</a>
+                    </div>
+                    <?php
+                    break;
+                case 'deinstall' :
+                    if (!$install->is_installed())
+                        break;
+
+                    $install->deinstall();
+                    $install->log();
+                    ?>
+                    <div class="btn-group btn-group-justified">
+                        <a class="btn btn-info" href="index.php">auf die Startseite</a>
+                        <a class="btn btn-warning" href="?step=install_methodes">Installations &uuml;bersicht!</a>
+                    </div>
+                <?php break; } ?>
+
+            <div class="col-lg-12">
+                <hr/>
+                <small class="col-lg-6">
+                    <?= $install->get_name() ?> Module &copy; <?=$install->get_author()?> <br />
+                    Installations Script &copy; 2014 by <a href="http://howald-design.ch/">Balthazar3k</a>
+                </small>
+
+                <small class="col-lg-6 text-right">
+                    Das Installations Modul gibt es bei, <br />
+                    Balthazar3k zu Downloaden
+                </small>
+            </div>
+        </div>
+    </body>
 </html>
+
 <?php
-function dialog( $step, $title, $msg ){
-	echo 	'<div id="dialog" title="'.$title.'" step="'.($step).'" align="left">
-				'. $msg .'
-			</div>';
-}
+db_close();
 ?>
