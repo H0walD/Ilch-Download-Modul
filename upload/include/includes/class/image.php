@@ -196,7 +196,7 @@ class Image {
     }
     
     public static function copyright(){
-        echo "<center>&copy; <small>2014 by <a href='http://balthazar3k.howald-design.ch/'>Angelo.b3k</a> & <a href='http://howald-design.ch/'>Howald</a> (Download Modul)</small></center>";
+        echo "<br style='clear: both;' /><center>&copy; <small>2014 by <a href='http://balthazar3k.howald-design.ch/'>Angelo.b3k</a> & <a href='http://howald-design.ch/'>H0walD</a> (Download Modul)</small></center>";
     }
 }
 ?>

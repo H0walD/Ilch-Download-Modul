@@ -1,0 +1,155 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10.10.2014, 23:28:31
+    Author     : Balthazar
+*/
+
+.error_msg {
+    color: red;
+    background-color: rgba(255,0,0,0.1);
+    border-left:  8px solid red;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 6px;
+
+    font-size: 14px;
+}
+
+.error_msg > small {
+    color: #FFF;
+}
+
+.btn {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.btn > a, .btn > span { /* Hier könnt ihr die Download-Buttons anpassen */
+    display: inline-block;
+    box-sizing: border-box;
+    width: 120px;
+
+    padding: 8px 4px 5px 4px;
+    margin:  0 -1px;
+
+    background-color: rgba(179,179,179,0.8);
+    border-bottom:  5px solid black;
+	-webkit-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
+	box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
+
+    text-decoration: none;
+    text-transform: uppercase;
+
+    font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+    font-weight: bold;
+}
+
+.btn > a:first-child, .btn > span:first-child {
+    border-radius: 5px 0 0 5px ;
+}
+
+.btn > a:last-child, .btn > span:last-child {
+    border-radius: 0 5px  5px 0 ;
+}
+
+.down_link_true {
+    border-bottom:  5px solid green!important;
+}
+
+.down_link_false {
+    border-bottom:  5px solid darkred!important;
+    cursor: not-allowed;
+}
+
+.down_link_true:hover {
+    border-top: 2px solid black;
+    padding-top: 6px;
+    border-bottom:  5px solid darkgreen!important;
+}
+
+.down_link_false:hover {
+    border-top: 2px solid black;
+    padding-top: 6px;
+    cursor: not-allowed;
+}
+
+#download_image > img {
+    height: auto; /* Falls Dimensionsangaben im HTML vorhanden sind */
+    max-width: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+}
+
+.boxOverlay {
+    z-index: 1000;
+    position: fixed;
+    width: 100%;
+    height : 100%;
+    overflow   : auto;
+    background : rgba(0,0,0,0.9);
+
+    top: 0;
+    left: 0;
+}
+
+.boxOverlay > div {
+    margin-top : 2%!important;
+    margin     : auto;
+    border     : 1px solid #000;
+    text-align : center;
+}
+
+.boxOverlay > div > img, .boxOverlay > div {
+    width      : 1024px;
+    height    : auto;
+}
+
+.boxOverlay > div > header {
+    text-align: right;
+    border-bottom: 5px solid rgba(255,255,255,0.5);
+}
+
+
+
+.boxOverlay > div > footer {
+    text-align: center;
+    border-top: 5px solid rgba(255,255,255,0.5);
+}
+
+.boxOverlay > div > header > a {
+    display: inline-block;
+    color: #000;
+    margin-right: 5px;
+    font-size: 18px;
+    padding: 3px 6px;
+    width: 150px;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 3px 3px 0 0;
+}
+
+.boxOverlay > div > footer > span {
+    display: inline-block;
+    color: #000;
+    margin-right: 5px;
+    font-size: 18px;
+    padding: 3px 6px;
+    width: 80%;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 0 0 3px 3px ;
+}
+
+.boxOverlay > div > header > a:hover {
+    color: #orange!important;
+    font-weight: bold;
+    background-color: rgba(255,255,255,0.85);
+    text-shadow: 1px 1px 0 black;
+}

@@ -22,18 +22,18 @@ section#kategorie > a > header > h1 {
     margin: 0 20px;
     border-radius: 5px 5px 0 0;
 }
-section#kategorie > a > #content {
+section#kategorie > a > #contentd {
     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
 }
-section#kategorie > a > #content > img {
+section#kategorie > a > #contentd > img {
     background-color: rgba(255,255,255,0.05);
     width: 100%;
     height: auto;
 }
-section#kategorie > a > #content > div {
+section#kategorie > a > #contentd > div {
     box-sizing: border-box;
     position: absolute;
     width: 100%;

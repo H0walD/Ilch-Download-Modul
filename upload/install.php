@@ -11,7 +11,7 @@ require('include/includes/class/install.php');
 db_connect();
 
 $install = new Install();
-$install->set_name('download')
+$install->set_name('Download')
         ->set_version(100)
         ->set_description()
         ->set_folders();
