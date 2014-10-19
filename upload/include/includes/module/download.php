@@ -29,7 +29,13 @@ class download {
     }
 
     public function deinstall() {
-        
+        /* Deinstalliert nur die Datenbank einträge */
+        $status = array();
+        $status[] = db_query("ALTER TABLE `prefix_downcats` DROP `img`;");
+        $status[] = db_query("ALTER TABLE `prefix_downloads` DROP `demo`;");
+        $status[] = db_query("ALTER TABLE `prefix_downloads` DROP `drecht`;");
+
+        return !in_array(false, $status);
     }
 }
 ?>
