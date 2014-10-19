@@ -1,7 +1,7 @@
 <?php
 defined('main') or die('Sorry, so aber nicht!');
 
-class download {
+class Download {
 
     public $author = '2014 by <a href="http://balthazar3k.howald-design.ch/">angelo.b3k</a> & <a href="http://howald-design.ch/">Howaldi</a>';
     public $description = 'Das Download Script erweitert das Standart Download Script von ilch!';
