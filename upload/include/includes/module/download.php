@@ -8,7 +8,7 @@ class download {
 
     public function folders(){
         $folders = array(
-            'include/images/download/',
+            'include/images/downloads/',
             'include/images/downcats/'
         );
 
