@@ -1,68 +1,69 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Code and Design:
 ----------------
-° von "H0walD & Balthazar3k"
-° auf Basis von IlchClan 1.1 P
+Â° von "H0walD & Balthazar3k"
+Â° auf Basis von IlchClan 1.1 P
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Beschreibung:
 -------------
-° Diese Modul erweitert den Download Bereich.
-° Ihr habt die Möglichkeit Download Kategorien zu erstellen und jeweils ein Bild direkt im Adminbereich hochzuladen.
-° Ihr habt die Möglichkeit Screenshot oder Bilder für die Downloads im Adminbereich hochzuladen.
-° Ihr habt die Möglichkeit das no Image Bild im Adminbereich hochzuladen.
-° Ihr entscheidet ab welchem Recht ein Download zu Verfügung steht. Einstellbar bei jeder einzelnen Kategorie oder Download.
-° Demolink-Button,  Screenshot-Button (als Popup Vorschau) und Download-Button werden Rot angezeigt wenn man keine Rechte dafür hat, oder nichts eingetragen wurde.
+Â° Diese Modul erweitert den Download Bereich.
+Â° Ihr habt die MÃ¶glichkeit Download Kategorien zu erstellen und jeweils ein Bild direkt im Adminbereich hochzuladen.
+Â° Ihr habt die MÃ¶glichkeit Screenshot oder Bilder fÃ¼r die Downloads im Adminbereich hochzuladen.
+Â° Ihr habt die MÃ¶glichkeit das no Image Bild im Adminbereich hochzuladen.
+Â° Ihr entscheidet ab welchem Recht ein Download zu VerfÃ¼gung steht. Einstellbar bei jeder einzelnen Kategorie oder Download.
+Â° Demolink-Button,  Screenshot-Button (als Popup Vorschau) und Download-Button werden Rot angezeigt wenn man keine Rechte dafÃ¼r hat, oder nichts eingetragen wurde.
 usw. testet es einfach =)
-° Admin`s  sehen bei den Download noch einen Bearbeiten Button, damit sie direkt auf die Einzelnen Download`s zugreifen können.
+Â° Admin`s  sehen bei den Download noch einen Bearbeiten Button, damit sie direkt auf die Einzelnen Download`s zugreifen kÃ¶nnen.
 
  
 
 
 Voraussetzungen:
 ----------------
-° IlchClan 1.1 P
-° Ilch bbcode 2.0P muss installiert sein http://www.ilch.de/downloads-show-1742.html
+Â° IlchClan 1.1 P
+Â° Ilch bbcode 2.0P muss installiert sein http://www.ilch.de/downloads-show-1742.html
 
 
 Installation:
 -------------
-° Backup der Ordner-Struktur und der DB anlegen!
-° Alle Dateien im Ordner Upload in ihrer Ordnerstruktur hochladen
-° Im Normalfall können alle Dateien überschrieben werden. 
+Â° Backup der Ordner-Struktur und der DB anlegen!
+Â° Alle Dateien im Ordner Upload in ihrer Ordnerstruktur hochladen
+Â° install ausfÃ¼hren (www.DeineDomain.de/install.php)
+Â° Im Normalfall kÃ¶nnen alle Dateien Ã¼berschrieben werden. 
 
 
 Tipps:
 -------------
-° Alle Bilder können im Backend Bereich (Admin) direkt hochgeladen werden.
-° Die Kategorie Bilder sollten alle die gleiche Größe haben. 
-° Die Kategorie Bilder sollten eine Breite von 220px haben.
-° in der download-cate.css unter include/includes/css/download-cate.css könnt ihr in der Zeile 10 einstellen ob ihr zwei oder drei download nebeneinander haben möchtet.
-° ( einfach den width: xx% wert auf 50 % bei zwei oder den Wert auf 33.33% bei drei Download`s bzw. Kategorien einstellen )
+Â° Alle Bilder kÃ¶nnen im Backend Bereich (Admin) direkt hochgeladen werden.
+Â° Die Kategorie Bilder sollten alle die gleiche GrÃ¶ÃŸe haben. 
+Â° Die Kategorie Bilder sollten eine Breite von 220px haben.
+Â° in der download-cate.css unter include/includes/css/download-cate.css kÃ¶nnt ihr in der Zeile 10 einstellen ob ihr zwei oder drei download nebeneinander haben mÃ¶chtet.
+Â° ( einfach den width: xx% wert auf 50 % bei zwei oder den Wert auf 33.33% bei drei Download`s bzw. Kategorien einstellen )
 
 
 Ersetzt:
 -------------
 Backend:
-° archiv.php
-° downloads.htm
-° upload.htm
+Â° archiv.php
+Â° downloads.htm
+Â° upload.htm
 
 Frontent:
-° downloads.php
-° downloads.htm
-° downloads_show.htm
+Â° downloads.php
+Â° downloads.htm
+Â° downloads_show.htm
 
-Und einige Dateien werden neu Installiert + drei neue Msql Einträge werden neu gemacht.
+Und einige Dateien werden neu Installiert + drei neue Msql EintrÃ¤ge werden neu gemacht.
 
 
-Bekannte Einschränkungen / Fehler:
+Bekannte EinschrÃ¤nkungen / Fehler:
 ----------------------------------
 *keine
 
 Haftungsausschluss:
 -------------------
-Ich übernehme keine Haftung für Schäden, die durch dieses Skript entstehen.
-Benutzung ausschließlich AUF EIGENE GEFAHR.
+Ich Ã¼bernehme keine Haftung fÃ¼r SchÃ¤den, die durch dieses Skript entstehen.
+Benutzung ausschlieÃŸlich AUF EIGENE GEFAHR.
 
 Fehler bitte im Forum von howald-design.ch oder auf ilch.de posten!
