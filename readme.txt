@@ -23,6 +23,7 @@ Voraussetzungen:
 ----------------
 ° IlchClan 1.1 P
 ° Ilch bbcode 2.0P muss installiert sein http://www.ilch.de/downloads-show-1742.html
+° php Version 5.5 oder höher
 
 
 Installation:
